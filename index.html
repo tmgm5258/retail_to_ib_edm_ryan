@@ -1,0 +1,3416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Retail-to-IB EDM — Strategic Overview | TMGM 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #FAFBFC; --white: #FFFFFF; --dark: #111827; --grey-900: #1F2937;
+  --grey-700: #374151; --grey-600: #4B5563; --grey-500: #6B7280;
+  --grey-400: #9CA3AF; --grey-300: #D1D5DB; --grey-200: #E5E7EB;
+  --grey-100: #F3F4F6; --grey-50: #F9FAFB;
+  --blue: #3B82F6; --blue-light: #EFF6FF; --blue-dark: #1E40AF;
+  --purple: #8B5CF6; --purple-light: #F5F3FF;
+  --green: #10B981; --green-light: #ECFDF5;
+  --amber: #F59E0B; --amber-light: #FFFBEB;
+  --red: #EF4444; --red-light: #FEF2F2;
+  --font: 'Inter', -apple-system, system-ui, sans-serif;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.06), 0 2px 4px rgba(0,0,0,0.04);
+  --shadow-lg: 0 10px 15px rgba(0,0,0,0.06), 0 4px 6px rgba(0,0,0,0.04);
+  --radius: 12px; --radius-lg: 16px;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { font-family:var(--font); color:var(--dark); background:var(--bg); line-height:1.6; -webkit-font-smoothing:antialiased; }
+
+/* HEADER */
+.header { background:var(--white); border-bottom:1px solid var(--grey-200); padding:24px 40px; position:sticky; top:0; z-index:100; }
+.header-inner { max-width:1200px; margin:0 auto; }
+.header-left h1 { font-size:18px; font-weight:800; color:var(--dark); letter-spacing:-0.3px; }
+.header-meta-row { display:flex; align-items:center; gap:12px; margin-top:6px; flex-wrap:wrap; }
+.header-left .header-meta { font-size:12px; color:var(--grey-500); }
+.header-badges { display:flex; gap:6px; }
+.header-badge { padding:4px 10px; border-radius:20px; font-size:11px; font-weight:600; }
+.badge-en { background:var(--blue-light); color:var(--blue-dark); }
+.badge-id { background:var(--purple-light); color:var(--purple); }
+.badge-ko { background:var(--amber-light); color:var(--amber); }
+.badge-vn { background:var(--green-light); color:var(--green); }
+.badge-th { background:var(--red-light); color:var(--red); }
+.badge-ar { background:var(--grey-100); color:var(--grey-600); }
+
+/* Target regions line */
+.header-regions {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-top:8px;
+  font-size:11.5px;
+  color:var(--grey-600);
+}
+.header-regions-label {
+  font-weight:700;
+  color:var(--grey-700);
+}
+.header-regions-tags {
+  display:flex;
+  gap:6px;
+}
+.region-tag {
+  padding:3px 10px;
+  border-radius:20px;
+  font-size:10.5px;
+  font-weight:600;
+  background:var(--grey-100);
+  color:var(--grey-700);
+}
+
+/* MAIN */
+.main { max-width:1200px; margin:0 auto; padding:32px 40px 80px; }
+
+/* SECTION TITLE */
+.section-title { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--grey-400); margin-bottom:16px; margin-top:8px; }
+.section-title:first-of-type { margin-top:0; }
+
+/* JOURNEY FLOW (inside info-card) */
+.journey-flow { display:flex; flex-direction:column; gap:14px; position:relative; margin-bottom:20px; }
+.journey-row { display:flex; gap:14px; align-items:stretch; position:relative; z-index:1; }
+.journey-row:hover { z-index:10; }
+.journey-row .j-node { flex:1; }
+.j-node { padding:16px 14px; border-radius:10px; text-align:center; transition:all 0.25s ease; position:relative; }
+.j-node:hover { transform:translateY(-2px); box-shadow:var(--shadow-md); }
+.j-node .j-num { font-size:10px; font-weight:800; color:var(--white); width:20px; height:20px; border-radius:6px; display:inline-flex; align-items:center; justify-content:center; margin-bottom:6px; }
+.j-node .j-name { font-size:13px; font-weight:700; color:var(--dark); line-height:1.3; }
+.j-node .j-trigger { font-size:11px; color:var(--grey-500); margin-top:3px; }
+
+.j-node.proposed { background:var(--green-light); border:1.5px solid rgba(16,185,129,0.25); }
+.j-node.proposed .j-num { background:var(--green); }
+
+.j-node.rest { background:var(--grey-50); border:1.5px dashed var(--grey-300); opacity:0.75; }
+.j-node.rest .j-num { background:var(--grey-400); }
+.j-node.rest .j-name { color:var(--grey-500); }
+.j-node.rest .j-trigger { color:var(--grey-400); }
+.j-node.rest:hover { opacity:1; }
+
+/* Arrows */
+.j-node.has-arrow-right::after {
+  content:'→'; position:absolute; right:-12px; top:50%; transform:translateY(-50%);
+  font-size:14px; color:var(--grey-300); font-weight:700; z-index:2;
+}
+.j-node.proposed.has-arrow-right::after { color:var(--green); opacity:0.5; }
+.j-node.rest.has-arrow-right::after { color:var(--grey-300); opacity:0.4; }
+
+/* Journey tooltips */
+.j-node .j-tooltip {
+  position:absolute; bottom:calc(100% + 10px); left:50%; transform:translateX(-50%);
+  background:var(--grey-900); color:var(--white); font-size:12px; font-weight:500;
+  line-height:1.5; padding:10px 14px; border-radius:8px; white-space:normal;
+  width:200px; text-align:left; opacity:0; visibility:hidden;
+  transition:opacity 0.2s, visibility 0.2s; pointer-events:none; z-index:500;
+  box-shadow:var(--shadow-lg);
+}
+.j-node .j-tooltip::after {
+  content:''; position:absolute; top:100%; left:50%; transform:translateX(-50%);
+  border:6px solid transparent; border-top-color:var(--grey-900);
+}
+.j-node:hover .j-tooltip { opacity:1; visibility:visible; }
+.j-node .j-tooltip.tip-bottom {
+  bottom:auto; top:calc(100% + 10px);
+}
+.j-node .j-tooltip.tip-bottom::after {
+  top:auto; bottom:100%; border-top-color:transparent; border-bottom-color:var(--grey-900);
+}
+.j-node .j-tooltip strong { color:#FCD34D; }
+
+/* Email purpose list */
+.email-purposes { margin-top:8px; }
+.email-purposes-title { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; color:var(--grey-400); margin-bottom:12px; }
+.purpose-row { display:flex; align-items:flex-start; gap:12px; padding:10px 0; border-bottom:1px solid var(--grey-100); }
+.purpose-row:last-child { border-bottom:none; }
+.purpose-num {
+  flex-shrink:0;
+  width:44px;
+  height:44px;
+  border-radius:10px;
+  background:var(--green-light);
+  color:var(--green);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:0.3px;
+}
+.purpose-content { flex:1; padding-top:2px; }
+.purpose-header { font-size:13.5px; font-weight:700; color:var(--dark); margin-bottom:3px; }
+.purpose-header .purpose-stage { color:var(--green); font-weight:700; margin-left:4px; }
+.purpose-desc { font-size:13px; color:var(--grey-600); line-height:1.6; }
+
+/* DETAILED FLOWCHART - 4 BLOCKS */
+.fc-block {
+  margin-bottom:24px;
+  padding-bottom:20px;
+  border-bottom:1px dashed var(--grey-200);
+}
+.fc-block:last-of-type { border-bottom:none; padding-bottom:0; margin-bottom:8px; }
+.fc-block-title {
+  font-size:11px;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  color:var(--grey-500);
+  margin-bottom:14px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.fc-block-num {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:22px;
+  height:22px;
+  border-radius:6px;
+  background:var(--dark);
+  color:var(--white);
+  font-size:11px;
+  font-weight:800;
+}
+
+/* Horizontal flow steps (used in Block 1 and 2) */
+.fc-steps {
+  display:flex;
+  gap:10px;
+  align-items:stretch;
+  flex-wrap:wrap;
+  margin-bottom:12px;
+}
+.fc-step {
+  flex:1;
+  min-width:0;
+  padding:12px 10px;
+  border-radius:10px;
+  text-align:center;
+  position:relative;
+  transition:all 0.25s ease;
+  background:var(--white);
+  border:1.5px solid var(--grey-200);
+  cursor:help;
+}
+.fc-step:hover { transform:translateY(-2px); box-shadow:var(--shadow-md); }
+.fc-step.step-active { background:var(--green-light); border-color:rgba(16,185,129,0.3); }
+.fc-step.step-filter { background:#EEF2FF; border-color:rgba(0,11,80,0.2); }
+.fc-step.step-entry { background:#FEF3C7; border-color:rgba(245,158,11,0.4); }
+.fc-step-label {
+  font-size:10px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:0.5px;
+  color:var(--grey-500);
+  margin-bottom:4px;
+}
+.fc-step.step-active .fc-step-label { color:var(--green); }
+.fc-step.step-filter .fc-step-label { color:#000B50; }
+.fc-step.step-entry .fc-step-label { color:var(--amber); }
+.fc-step-name { font-size:12px; font-weight:700; color:var(--dark); line-height:1.3; }
+
+.fc-step.has-arrow-right::after {
+  content:'→';
+  position:absolute;
+  right:-10px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:14px;
+  color:var(--grey-400);
+  font-weight:700;
+  z-index:2;
+}
+
+/* Filter conditions box (Block 1) */
+.fc-filter-box {
+  background:#EEF2FF;
+  border:1.5px solid rgba(0,11,80,0.2);
+  border-radius:12px;
+  padding:16px 18px;
+  margin:12px 0;
+}
+.fc-filter-title {
+  font-size:12px;
+  font-weight:800;
+  color:#000B50;
+  margin-bottom:10px;
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+.fc-filter-list {
+  display:grid;
+  grid-template-columns:repeat(2, 1fr);
+  gap:8px 16px;
+  margin-bottom:10px;
+}
+.fc-filter-item {
+  font-size:11.5px;
+  color:var(--grey-700);
+  line-height:1.5;
+  display:flex;
+  align-items:flex-start;
+  gap:6px;
+}
+.fc-filter-item .fc-check {
+  color:var(--green);
+  font-weight:700;
+  flex-shrink:0;
+}
+.fc-filter-item code {
+  background:rgba(0,11,80,0.08);
+  padding:1px 5px;
+  border-radius:3px;
+  font-size:10.5px;
+  font-family:monospace;
+  color:#000B50;
+}
+.fc-filter-outcome {
+  font-size:12px;
+  font-weight:700;
+  color:#000B50;
+  padding-top:10px;
+  border-top:1px solid rgba(0,11,80,0.15);
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+
+/* Info note (used for journey-level note) */
+.fc-note {
+  background:var(--amber-light);
+  border-left:3px solid var(--amber);
+  padding:10px 14px;
+  border-radius:6px;
+  font-size:12px;
+  color:var(--grey-700);
+  line-height:1.6;
+  margin-top:12px;
+}
+.fc-note strong { color:var(--dark); }
+
+/* Decision tree (Block 3) */
+.fc-decision-wrapper {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:8px 0;
+}
+.fc-decision-question {
+  background:#EEF2FF;
+  color:#000B50;
+  border:2px solid #000B50;
+  padding:12px 24px;
+  border-radius:10px;
+  font-size:13px;
+  font-weight:700;
+  text-align:center;
+  margin-bottom:8px;
+}
+.fc-decision-arrow {
+  width:2px;
+  height:20px;
+  background:var(--grey-300);
+  margin-bottom:4px;
+}
+.fc-decision-split {
+  display:flex;
+  gap:40px;
+  width:100%;
+  justify-content:center;
+  position:relative;
+}
+.fc-decision-split::before {
+  content:'';
+  position:absolute;
+  top:-4px;
+  left:calc(25% - 4px);
+  right:calc(25% - 4px);
+  height:2px;
+  background:var(--grey-300);
+  z-index:0;
+}
+.fc-decision-branch {
+  flex:1;
+  max-width:280px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:6px;
+  position:relative;
+}
+.fc-decision-branch:hover { z-index:500; }
+.fc-branch-label {
+  font-size:11px;
+  font-weight:800;
+  padding:4px 14px;
+  border-radius:20px;
+  letter-spacing:0.3px;
+}
+.fc-branch-label.yes { background:var(--green-light); color:var(--green); }
+.fc-branch-label.no { background:var(--red-light); color:var(--red); }
+.fc-branch-node {
+  background:var(--white);
+  border:1.5px solid var(--grey-200);
+  border-radius:10px;
+  padding:10px 14px;
+  font-size:12px;
+  color:var(--grey-700);
+  text-align:center;
+  width:100%;
+  line-height:1.5;
+  cursor:help;
+  transition:all 0.2s;
+}
+.fc-branch-node:hover { transform:translateY(-2px); box-shadow:var(--shadow-md); z-index:600; }
+.fc-branch-node.exit {
+  background:var(--green-light);
+  border-color:rgba(16,185,129,0.3);
+  color:var(--green);
+  font-weight:700;
+}
+.fc-branch-node.cooldown {
+  background:#FEF3C7;
+  border-color:rgba(245,158,11,0.4);
+  color:var(--amber);
+  font-weight:700;
+}
+.fc-branch-node.reentry {
+  background:var(--blue-light);
+  border-color:rgba(59,130,246,0.3);
+  color:var(--blue-dark);
+  font-weight:700;
+}
+.fc-branch-node.permanent-exit {
+  background:var(--red-light);
+  border-color:rgba(239,68,68,0.3);
+  color:var(--red);
+  font-weight:700;
+}
+.fc-branch-arrow {
+  width:2px;
+  height:14px;
+  background:var(--grey-300);
+}
+
+/* Exit conditions table (Block 4) */
+.fc-exits {
+  background:var(--red-light);
+  border:1.5px solid rgba(239,68,68,0.25);
+  border-radius:12px;
+  padding:16px 18px;
+}
+.fc-exits-title {
+  font-size:12px;
+  font-weight:800;
+  color:var(--red);
+  margin-bottom:10px;
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+.fc-exit-row {
+  display:flex;
+  gap:12px;
+  padding:8px 0;
+  border-bottom:1px solid rgba(239,68,68,0.15);
+  font-size:12px;
+  align-items:flex-start;
+}
+.fc-exit-row:last-child { border-bottom:none; padding-bottom:0; }
+.fc-exit-trigger {
+  flex:0 0 200px;
+  font-weight:700;
+  color:var(--dark);
+}
+.fc-exit-trigger code {
+  background:rgba(239,68,68,0.1);
+  padding:1px 5px;
+  border-radius:3px;
+  font-family:monospace;
+  font-size:11px;
+  color:var(--red);
+}
+.fc-exit-outcome {
+  flex:1;
+  color:var(--grey-700);
+  line-height:1.5;
+}
+
+/* EXPANDABLE CARD (matches email-card style) */
+.info-card { background:var(--white); border-radius:var(--radius-lg); border:1px solid var(--grey-200); box-shadow:var(--shadow-sm); margin-bottom:45px; overflow:hidden; transition:box-shadow 0.2s; scroll-margin-top:80px; }
+.info-card:hover { box-shadow:var(--shadow-md); }
+.info-header { padding:20px 28px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid transparent; cursor:pointer; user-select:none; transition:border-color 0.2s; }
+.info-card.expanded .info-header { border-bottom-color:var(--grey-100); }
+.info-header-left { display:flex; align-items:center; gap:12px; }
+.info-toggle { width:28px; height:28px; border-radius:6px; background:var(--grey-100); display:flex; align-items:center; justify-content:center; color:var(--grey-500); font-size:12px; transition:all 0.3s; flex-shrink:0; }
+.info-card.expanded .info-toggle { background:#000B50; color:var(--white); }
+.info-card.expanded .info-toggle svg { transform:rotate(180deg); }
+.info-card .info-collapsible { max-height:0; overflow:hidden; transition:max-height 0.4s ease; }
+.info-card.expanded .info-collapsible { max-height:8000px; }
+.info-card.expanded .expand-hint { opacity:0; pointer-events:none; }
+.expand-hint { font-size:11px; color:var(--grey-400); margin-left:8px; font-weight:500; font-style:italic; transition:opacity 0.3s; }
+
+.info-icon { width:32px; height:32px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:16px; color:var(--white); background:#000B50; flex-shrink:0; }
+.info-meta h2 { font-size:15px; font-weight:700; color:var(--dark); user-select:text; cursor:text; }
+.info-meta .info-subtitle { font-size:12px; color:var(--grey-500); user-select:text; cursor:text; }
+.info-badge { padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600; background:#EEF2FF; color:#000B50; }
+
+/* TABS (matches lang-tabs style) */
+.info-tabs { display:flex; gap:0; border-bottom:1px solid var(--grey-200); background:var(--grey-50); overflow-x:auto; }
+.info-tab { flex:1; min-width:auto; padding:12px 18px; font-size:12px; font-weight:600; color:var(--grey-500); cursor:pointer; border-bottom:2px solid transparent; transition:all 0.2s; background:transparent; border-top:none; border-left:none; border-right:none; font-family:var(--font); text-align:center; white-space:nowrap; }
+.info-tab.active { color:#000B50; border-bottom-color:#000B50; background:var(--white); }
+.info-tab:hover { color:var(--dark); }
+.info-tab-content { display:none; }
+.info-tab-content.active { display:block; }
+
+/* INFO BODY */
+.info-body { padding:24px 28px; }
+.info-body p { font-size:14px; color:var(--grey-700); line-height:1.75; margin-bottom:14px; }
+.info-body p:last-child { margin-bottom:0; }
+.info-body strong { color:var(--dark); font-weight:700; }
+.info-body .highlight-box {
+  border-left:3px solid #CC1042;
+  padding:4px 0 4px 18px;
+  margin-top:12px;
+  margin-bottom:4px;
+  font-size:13px;
+  color:var(--grey-600);
+  line-height:1.75;
+  font-style:italic;
+}
+.info-body ul { margin-top:8px; padding-left:20px; }
+.info-body ul li { font-size:13px; color:var(--grey-700); line-height:1.8; margin-bottom:4px; }
+.info-body .status-row { display:flex; align-items:center; gap:10px; padding:10px 0; border-bottom:1px solid var(--grey-100); font-size:13px; }
+.info-body .status-row:last-child { border-bottom:none; }
+.info-body .status-label { flex:1; color:var(--grey-700); }
+.info-body .status-pill { padding:3px 10px; border-radius:20px; font-size:11px; font-weight:600; }
+.status-pill.confirmed { background:var(--green-light); color:var(--green); }
+.status-pill.pending { background:var(--amber-light); color:var(--amber); }
+.status-pill.draft { background:var(--blue-light); color:var(--blue-dark); }
+.status-pill.blocked { background:var(--red-light); color:var(--red); }
+
+/* Structured 3-block layout (used in Target tab) */
+.info-block { padding:14px 0; border-bottom:1px solid var(--grey-100); }
+.info-block:first-of-type { padding-top:0; }
+.info-block:last-of-type { border-bottom:none; padding-bottom:4px; }
+.info-block-title { font-size:13px; font-weight:700; color:var(--dark); margin-bottom:12px; display:flex; align-items:center; gap:8px; }
+.info-block-title .block-icon { font-size:15px; }
+.info-block-prose { font-size:13px; color:var(--grey-700); line-height:1.7; }
+
+/* IN/OUT 2-column split panels */
+.in-out-split {
+  display:flex;
+  gap:0;
+  border:1px solid var(--grey-200);
+  border-radius:10px;
+}
+.in-out-panel {
+  flex:1;
+  padding:16px 18px;
+  min-width:0;
+}
+.in-out-panel.panel-in {
+  background:#F0FDF4;
+  border-radius:9px 0 0 9px;
+}
+.in-out-panel.panel-out {
+  background:#FEF2F2;
+  border-left:1px solid var(--grey-200);
+  border-radius:0 9px 9px 0;
+}
+.in-out-panel-label {
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:0.4px;
+  margin-bottom:10px;
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+.in-out-panel.panel-in .in-out-panel-label {
+  color:#059669;
+}
+.in-out-panel.panel-out .in-out-panel-label {
+  color:#DC2626;
+}
+.in-out-panel-items ul {
+  margin:0;
+  padding-left:18px;
+  list-style:disc;
+}
+.in-out-panel-items ul li {
+  font-size:13px;
+  color:var(--grey-700);
+  line-height:1.7;
+  margin-bottom:4px;
+  position:relative;
+}
+.in-out-panel-items ul li:last-child {
+  margin-bottom:0;
+}
+.in-out-panel-items .inline-list {
+  font-size:13px;
+  color:var(--grey-700);
+  line-height:1.7;
+}
+
+/* Tooltip-enabled list items */
+.has-tooltip {
+  cursor:help;
+  position:relative;
+}
+.has-tooltip:hover {
+  z-index:999;
+}
+.has-tooltip .info-icon-inline {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:14px;
+  height:14px;
+  border-radius:50%;
+  background:var(--grey-200);
+  color:var(--grey-500);
+  font-size:9px;
+  font-weight:700;
+  margin-left:6px;
+  vertical-align:middle;
+  transition:all 0.2s;
+  font-style:normal;
+}
+.has-tooltip:hover .info-icon-inline {
+  background:var(--grey-700);
+  color:var(--white);
+}
+.has-tooltip .item-tooltip {
+  position:absolute;
+  left:0;
+  top:calc(100% + 8px);
+  background:#1F2937;
+  color:var(--white);
+  font-size:12px;
+  font-weight:400;
+  font-style:normal;
+  line-height:1.6;
+  padding:10px 14px;
+  border-radius:8px;
+  width:300px;
+  max-width:calc(100vw - 40px);
+  text-align:left;
+  opacity:0;
+  visibility:hidden;
+  transition:opacity 0.2s, visibility 0.2s;
+  pointer-events:none;
+  z-index:9999;
+  box-shadow:var(--shadow-lg);
+}
+.has-tooltip .item-tooltip::before {
+  content:'';
+  position:absolute;
+  bottom:100%;
+  left:20px;
+  border:6px solid transparent;
+  border-bottom-color:#1F2937;
+}
+.has-tooltip:hover .item-tooltip {
+  opacity:1;
+  visibility:visible;
+}
+.has-tooltip .item-tooltip strong {
+  color:#FCD34D;
+  font-weight:600;
+}
+.has-tooltip .item-tooltip code {
+  background:rgba(255,255,255,0.1);
+  padding:1px 5px;
+  border-radius:3px;
+  font-size:11px;
+  font-family:monospace;
+}
+
+/* QUICK JOURNEY FLOW (HubSpot branching — v2 style, compact) */
+.qf-container {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:0;
+  padding:20px 0 10px;
+  position:relative;
+}
+
+/* Upper funnel header label */
+.qf-upper-label {
+  font-size:10px;
+  font-weight:800;
+  color:var(--blue);
+  text-transform:uppercase;
+  letter-spacing:1px;
+  padding:4px 12px;
+  background:var(--blue-light);
+  border-radius:20px;
+  margin-bottom:8px;
+  display:inline-block;
+}
+
+/* Upstream/funnel boxes */
+.qf-box {
+  padding:10px 20px;
+  border-radius:10px;
+  text-align:center;
+  position:relative;
+  min-width:280px;
+  cursor:help;
+  transition:transform 0.2s, box-shadow 0.2s;
+}
+.qf-box:hover {
+  transform:translateY(-2px);
+  box-shadow:var(--shadow-md);
+  z-index:100;
+}
+.qf-box-title { font-size:12px; font-weight:700; color:var(--dark); }
+.qf-box-sub { font-size:10px; color:var(--grey-500); margin-top:1px; }
+
+.qf-upstream {
+  background:linear-gradient(135deg,#EFF6FF,#F5F3FF);
+  border:1.5px dashed rgba(59,130,246,0.35);
+}
+.qf-upstream .qf-box-title { color:var(--blue); }
+
+.qf-checkpoint {
+  background:linear-gradient(135deg,#ECFDF5,#FFFFFF);
+  border:1.5px dashed rgba(16,185,129,0.45);
+}
+.qf-checkpoint .qf-box-title { color:var(--green); }
+
+.qf-buffer {
+  background:linear-gradient(135deg,#FFFBEB,#FFFFFF);
+  border:1.5px dashed rgba(245,158,11,0.45);
+}
+.qf-buffer .qf-box-title { color:var(--amber); }
+
+.qf-entry {
+  background:var(--blue-light);
+  border:1.5px solid rgba(59,130,246,0.25);
+}
+.qf-entry .qf-box-title { color:var(--blue-dark); font-size:13px; }
+
+/* Divider between upper funnel and journey */
+.qf-upstream-divider {
+  width:80%;
+  max-width:400px;
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--grey-300),transparent);
+  margin:14px auto 6px;
+  position:relative;
+}
+.qf-upstream-divider::after {
+  content:'↓ matches filter → enters journey';
+  position:absolute;
+  top:-6px;
+  left:50%;
+  transform:translateX(-50%);
+  background:var(--white);
+  padding:0 10px;
+  font-size:9px;
+  color:var(--grey-500);
+  font-style:italic;
+  white-space:nowrap;
+}
+
+/* Email nodes */
+.qf-email {
+  background:var(--green-light);
+  border:1.5px solid rgba(16,185,129,0.25);
+  min-width:260px;
+}
+.qf-email .qf-box-title { color:var(--green); }
+
+/* Rest day nodes */
+.qf-rest {
+  background:var(--grey-50);
+  border:1.5px dashed var(--grey-300);
+  padding:8px 16px;
+  min-width:auto;
+}
+.qf-rest .qf-box-title { color:var(--grey-500); font-weight:600; font-size:11px; }
+
+/* Decision node (Converted to IB?) */
+.qf-decision {
+  background:var(--amber-light);
+  border:1.5px solid rgba(245,158,11,0.25);
+  padding:8px 20px;
+  border-radius:10px;
+  text-align:center;
+  cursor:help;
+  transition:transform 0.2s, box-shadow 0.2s;
+  position:relative;
+}
+.qf-decision:hover {
+  transform:translateY(-2px);
+  box-shadow:var(--shadow-md);
+  z-index:100;
+}
+.qf-decision .qf-box-title { color:var(--amber); font-size:12px; }
+
+/* Exit box (IB Welcome) */
+.qf-exit-box {
+  background:var(--green-light);
+  border:1.5px solid rgba(16,185,129,0.25);
+  padding:8px 16px;
+  border-radius:10px;
+  text-align:center;
+  cursor:help;
+  transition:transform 0.2s, box-shadow 0.2s;
+  position:relative;
+}
+.qf-exit-box:hover {
+  transform:translateY(-2px);
+  box-shadow:var(--shadow-md);
+  z-index:100;
+}
+.qf-exit-box .qf-box-title { color:var(--green); font-size:11px; }
+
+/* Cool-down box (after E5 NO) */
+.qf-cooldown-box {
+  background:var(--amber-light);
+  border:1.5px solid rgba(245,158,11,0.25);
+  padding:8px 16px;
+  border-radius:10px;
+  text-align:center;
+  cursor:help;
+  transition:transform 0.2s, box-shadow 0.2s;
+  position:relative;
+  min-width:auto;
+}
+.qf-cooldown-box:hover {
+  transform:translateY(-2px);
+  box-shadow:var(--shadow-md);
+  z-index:100;
+}
+.qf-cooldown-box .qf-box-title { color:var(--amber); font-size:11px; }
+
+/* Vertical line connectors */
+.qf-vline {
+  width:2px;
+  height:12px;
+  background:var(--grey-300);
+}
+
+/* YES/NO labels on branch arms */
+.qf-label {
+  font-size:9px;
+  font-weight:700;
+  padding:2px 7px;
+  border-radius:4px;
+  margin:2px 0;
+}
+.qf-label.yes { background:var(--green-light); color:var(--green); }
+.qf-label.no { background:var(--red-light); color:var(--red); }
+
+/* BRANCHING T-SPLIT STRUCTURE */
+.qf-branch {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  width:100%;
+  max-width:750px;
+}
+.qf-branch-t {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  width:100%;
+}
+.qf-branch-stem {
+  width:2px;
+  height:8px;
+  background:var(--grey-300);
+}
+.qf-branch-bar {
+  height:2px;
+  background:var(--grey-300);
+  width:75%;
+  min-width:450px;
+  position:relative;
+}
+.qf-branch-bar::before {
+  content:'';
+  position:absolute;
+  left:0;
+  top:0;
+  width:2px;
+  height:10px;
+  background:var(--grey-300);
+}
+.qf-branch-bar::after {
+  content:'';
+  position:absolute;
+  right:0;
+  top:0;
+  width:2px;
+  height:10px;
+  background:var(--grey-300);
+}
+
+.qf-branch-arms {
+  display:flex;
+  width:75%;
+  min-width:450px;
+  justify-content:space-between;
+  margin-top:10px;
+}
+.qf-branch-arm {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:4px;
+}
+.qf-branch-arm-no { width:50%; }
+.qf-branch-arm-yes { width:50%; }
+
+/* Rest day → next email arrow */
+.qf-rest-arrow {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:2px;
+  margin-top:6px;
+}
+.qf-rest-arrow .qf-rest-line {
+  width:2px;
+  height:8px;
+  background:var(--grey-300);
+}
+.qf-rest-arrow .qf-rest-label {
+  font-size:9px;
+  color:var(--grey-400);
+  font-style:italic;
+}
+
+/* IB Welcome → separate journey arrow */
+.qf-ib-arrow {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:2px;
+  margin-top:6px;
+}
+.qf-ib-arrow .qf-ib-line {
+  width:2px;
+  height:8px;
+  background:var(--green);
+  opacity:0.4;
+}
+.qf-ib-arrow .qf-ib-label {
+  font-size:9px;
+  color:var(--green);
+  font-style:italic;
+  font-weight:600;
+}
+
+/* Tooltips on qf nodes (reuse dark tooltip style) */
+.qf-box .qf-tooltip,
+.qf-decision .qf-tooltip,
+.qf-exit-box .qf-tooltip,
+.qf-cooldown-box .qf-tooltip {
+  position:absolute;
+  bottom:calc(100% + 8px);
+  left:50%;
+  transform:translateX(-50%);
+  background:var(--grey-900);
+  color:var(--white);
+  font-size:11.5px;
+  font-weight:500;
+  line-height:1.5;
+  padding:10px 14px;
+  border-radius:8px;
+  white-space:normal;
+  width:260px;
+  text-align:left;
+  opacity:0;
+  visibility:hidden;
+  transition:opacity 0.2s, visibility 0.2s;
+  pointer-events:none;
+  z-index:9999;
+  box-shadow:var(--shadow-lg);
+}
+.qf-box .qf-tooltip::after,
+.qf-decision .qf-tooltip::after,
+.qf-exit-box .qf-tooltip::after,
+.qf-cooldown-box .qf-tooltip::after {
+  content:'';
+  position:absolute;
+  top:100%;
+  left:50%;
+  transform:translateX(-50%);
+  border:6px solid transparent;
+  border-top-color:var(--grey-900);
+}
+.qf-box .qf-tooltip.tip-below,
+.qf-decision .qf-tooltip.tip-below,
+.qf-exit-box .qf-tooltip.tip-below,
+.qf-cooldown-box .qf-tooltip.tip-below {
+  bottom:auto;
+  top:calc(100% + 8px);
+}
+.qf-box .qf-tooltip.tip-below::after,
+.qf-decision .qf-tooltip.tip-below::after,
+.qf-exit-box .qf-tooltip.tip-below::after,
+.qf-cooldown-box .qf-tooltip.tip-below::after {
+  top:auto;
+  bottom:100%;
+  border-top-color:transparent;
+  border-bottom-color:var(--grey-900);
+}
+.qf-box:hover .qf-tooltip,
+.qf-decision:hover .qf-tooltip,
+.qf-exit-box:hover .qf-tooltip,
+.qf-cooldown-box:hover .qf-tooltip {
+  opacity:1;
+  visibility:visible;
+}
+.qf-tooltip strong { color:#FCD34D; }
+.qf-tooltip code {
+  background:rgba(255,255,255,0.1);
+  padding:1px 5px;
+  border-radius:3px;
+  font-family:monospace;
+  font-size:10px;
+  color:#FCD34D;
+}
+
+/* DECISION SUB-CARDS (inside Section 4) */
+.decision-category {
+  font-size:10px;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:1.2px;
+  color:var(--grey-500);
+  margin:20px 0 10px;
+  padding-bottom:6px;
+  border-bottom:1px solid var(--grey-200);
+}
+.decision-category:first-of-type { margin-top:4px; }
+
+.decision-card {
+  background:var(--white);
+  border:1px solid var(--grey-200);
+  border-radius:10px;
+  margin-bottom:30px;
+  transition:box-shadow 0.2s, border-color 0.2s;
+}
+.decision-card:hover { border-color:var(--grey-300); box-shadow:var(--shadow-sm); }
+.decision-header {
+  padding:12px 16px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  cursor:pointer;
+  user-select:none;
+  transition:background 0.2s;
+  border-radius:10px;
+}
+.decision-header:hover { background:var(--grey-50); }
+.decision-card.expanded .decision-header {
+  border-radius:10px 10px 0 0;
+  border-bottom:1px solid var(--grey-100);
+  background:var(--grey-50);
+}
+.decision-header-left {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex:1;
+  min-width:0;
+}
+.decision-icon {
+  width:32px;
+  height:32px;
+  border-radius:8px;
+  background:#EEF2FF;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:15px;
+  flex-shrink:0;
+}
+.decision-meta { flex:1; min-width:0; }
+.decision-title {
+  font-size:13.5px;
+  font-weight:700;
+  color:var(--dark);
+  line-height:1.3;
+  user-select:text;
+  cursor:text;
+}
+.decision-summary {
+  font-size:11.5px;
+  color:var(--grey-500);
+  margin-top:2px;
+  user-select:text;
+  cursor:text;
+}
+.decision-toggle {
+  width:22px;
+  height:22px;
+  border-radius:5px;
+  background:var(--grey-100);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--grey-500);
+  flex-shrink:0;
+  transition:all 0.3s;
+}
+.decision-card.expanded .decision-toggle {
+  background:#CC1042;
+  color:var(--white);
+}
+.decision-card.expanded .decision-toggle svg {
+  transform:rotate(180deg);
+}
+.decision-collapsible {
+  max-height:0;
+  overflow:hidden;
+  transition:max-height 0.4s ease;
+}
+.decision-card.expanded .decision-collapsible { max-height:5000px; }
+
+/* Decision card tabs — similar to info-tabs but smaller */
+.decision-tabs {
+  display:flex;
+  gap:0;
+  border-bottom:1px solid var(--grey-200);
+  background:var(--grey-50);
+  overflow-x:auto;
+}
+.decision-tab {
+  flex:1;
+  padding:10px 12px;
+  font-size:11.5px;
+  font-weight:600;
+  color:var(--grey-500);
+  cursor:pointer;
+  border-bottom:2px solid transparent;
+  transition:all 0.2s;
+  background:transparent;
+  border-top:none;
+  border-left:none;
+  border-right:none;
+  font-family:var(--font);
+  text-align:center;
+  white-space:nowrap;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
+}
+.decision-tab.active {
+  color:#CC1042;
+  border-bottom-color:#CC1042;
+  background:var(--white);
+}
+.decision-tab:hover { color:var(--dark); }
+.decision-tab-content { display:none; padding:18px 20px; }
+.decision-tab-content.active { display:block; }
+.decision-tab-content p {
+  font-size:13px;
+  color:var(--grey-700);
+  line-height:1.75;
+  margin-bottom:12px;
+}
+.decision-tab-content p:last-child { margin-bottom:0; }
+.decision-tab-content strong { color:var(--dark); font-weight:700; }
+.decision-tab-content code {
+  background:var(--grey-100);
+  padding:1px 6px;
+  border-radius:3px;
+  font-family:monospace;
+  font-size:11.5px;
+  color:var(--dark);
+}
+.problem-item {
+  display:flex;
+  gap:10px;
+  margin-bottom:12px;
+  align-items:flex-start;
+}
+.problem-item:last-child { margin-bottom:0; }
+.problem-num {
+  flex-shrink:0;
+  width:24px;
+  height:24px;
+  border-radius:6px;
+  background:var(--red-light);
+  color:var(--red);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:11px;
+  font-weight:800;
+}
+.problem-text {
+  flex:1;
+  font-size:13px;
+  color:var(--grey-700);
+  line-height:1.65;
+  padding-top:2px;
+}
+.problem-text strong { color:var(--dark); }
+
+/* Green variant — for inclusion "Why They're Valuable" reasons */
+.reason-item {
+  display:flex;
+  gap:10px;
+  margin-bottom:12px;
+  align-items:flex-start;
+}
+.reason-item:last-child { margin-bottom:0; }
+.reason-num {
+  flex-shrink:0;
+  width:24px;
+  height:24px;
+  border-radius:6px;
+  background:var(--green-light);
+  color:var(--green);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:11px;
+  font-weight:800;
+}
+.reason-text {
+  flex:1;
+  font-size:13px;
+  color:var(--grey-700);
+  line-height:1.65;
+  padding-top:2px;
+}
+.reason-text strong { color:var(--dark); }
+.decision-statement {
+  border-left:3px solid var(--green);
+  padding:4px 0 4px 18px;
+  margin-top:4px;
+  margin-bottom:16px;
+  font-size:13px;
+  line-height:1.75;
+  color:var(--grey-600);
+  font-style:italic;
+}
+.decision-statement strong { color:var(--green); font-weight:700; font-style:italic; }
+.decision-statement code { font-style:normal; }
+
+/* Scenario character boxes (Option C layout) */
+.scenario-box {
+  background:var(--white);
+  border:1px solid var(--grey-200);
+  border-radius:10px;
+  padding:21px 27px;
+  margin-bottom:30px;
+}
+.scenario-box-header {
+  font-size:13.5px;
+  font-weight:700;
+  color:var(--dark);
+  margin-bottom:8px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.scenario-box-header .scenario-icon {
+  font-size:16px;
+}
+.scenario-box-body {
+  font-size:13px;
+  color:var(--grey-700);
+  line-height:1.7;
+}
+.scenario-box-body code {
+  background:var(--grey-100);
+  padding:1px 6px;
+  border-radius:3px;
+  font-family:monospace;
+  font-size:11.5px;
+  color:var(--dark);
+}
+
+.scenario-conflict {
+  background:#FFFBEB;
+  border:1px solid rgba(245,158,11,0.3);
+  border-left:3px solid var(--amber);
+  border-radius:10px;
+  padding:21px 27px;
+  margin-top:0;
+}
+.scenario-conflict-header {
+  font-size:13.5px;
+  font-weight:800;
+  color:#B45309;
+  margin-bottom:8px;
+  letter-spacing:0.2px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.scenario-conflict-body {
+  font-size:13px;
+  color:var(--grey-700);
+  line-height:1.7;
+}
+.scenario-conflict-body em {
+  color:#B45309;
+  font-weight:600;
+  font-style:italic;
+}
+
+/* Quote-style "Now Imagine" — classic left-bar */
+.scenario-quote-label {
+  font-size:12px;
+  font-weight:700;
+  color:var(--dark);
+  margin-bottom:6px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.scenario-quote-body {
+  border-left:3px solid #CC1042;
+  padding:4px 0 4px 18px;
+  font-size:13px;
+  color:var(--grey-600);
+  line-height:1.75;
+  font-style:italic;
+}
+.scenario-quote-body .nested-quote {
+  font-style:normal;
+  color:var(--dark);
+  font-weight:600;
+}
+
+/* Green variant — for inclusion scenarios ("Now Consider...") */
+.scenario-quote-body.positive {
+  border-left-color:var(--green);
+}
+
+/* Blue variant — for strategic/neutral scenarios */
+.scenario-quote-body.strategic {
+  border-left-color:var(--blue);
+}
+
+/* EMAIL CARD (Section 7 — Email Content) */
+.email-card {
+  background:var(--white);
+  border-radius:var(--radius-lg);
+  border:1px solid var(--grey-200);
+  box-shadow:var(--shadow-sm);
+  margin-bottom:24px;
+  overflow:hidden;
+  transition:box-shadow 0.2s;
+  scroll-margin-top:80px;
+}
+.email-card:hover { box-shadow:var(--shadow-md); }
+.email-header {
+  padding:20px 28px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid transparent;
+  cursor:pointer;
+  user-select:none;
+  transition:border-color 0.2s;
+}
+.email-card.expanded .email-header { border-bottom-color:var(--grey-100); }
+.email-header-left { display:flex; align-items:center; gap:12px; }
+.email-toggle {
+  width:28px;
+  height:28px;
+  border-radius:6px;
+  background:var(--grey-100);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--grey-500);
+  font-size:12px;
+  transition:all 0.3s;
+  flex-shrink:0;
+}
+.email-card.expanded .email-toggle {
+  background:#CC1042;
+  color:var(--white);
+}
+.email-card.expanded .email-toggle svg { transform:rotate(180deg); }
+.email-card .email-collapsible {
+  max-height:0;
+  overflow:hidden;
+  transition:max-height 0.4s ease;
+}
+.email-card.expanded .email-collapsible { max-height:8000px; }
+.email-card.expanded .expand-hint { opacity:0; pointer-events:none; }
+
+.email-num {
+  width:32px;
+  height:32px;
+  border-radius:8px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:13px;
+  font-weight:800;
+  color:var(--white);
+  background:var(--green);
+}
+.email-meta-h2 {
+  font-size:15px;
+  font-weight:700;
+  color:var(--dark);
+  user-select:text;
+  cursor:text;
+}
+.email-meta .email-trigger {
+  font-size:12px;
+  color:var(--grey-500);
+  user-select:text;
+  cursor:text;
+}
+.type-badge {
+  padding:4px 10px;
+  border-radius:6px;
+  font-size:11px;
+  font-weight:600;
+  background:var(--green-light);
+  color:var(--green);
+}
+
+/* LANG TABS */
+.lang-tabs {
+  display:flex;
+  gap:0;
+  border-bottom:1px solid var(--grey-200);
+  background:var(--grey-50);
+}
+.lang-tab {
+  flex:1;
+  padding:10px 20px;
+  font-size:12px;
+  font-weight:600;
+  color:var(--grey-500);
+  cursor:pointer;
+  border-bottom:2px solid transparent;
+  transition:all 0.2s;
+  background:transparent;
+  border-top:none;
+  border-left:none;
+  border-right:none;
+  font-family:var(--font);
+  text-align:center;
+}
+.lang-tab.active {
+  color:var(--blue);
+  border-bottom-color:var(--blue);
+  background:var(--white);
+}
+.lang-tab:hover { color:var(--dark); }
+.lang-content { display:none; }
+.lang-content.active { display:block; }
+
+/* EMAIL BODY */
+.email-body { padding:24px 28px; }
+.email-field { margin-bottom:16px; }
+.email-field-row { display:flex; align-items:flex-start; gap:12px; }
+.email-field-label {
+  font-size:10px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:0.5px;
+  color:var(--grey-400);
+  min-width:110px;
+  padding-top:4px;
+  flex-shrink:0;
+}
+.email-field-value {
+  font-size:14px;
+  color:var(--dark);
+  line-height:1.6;
+  flex:1;
+  word-break:break-word;
+}
+.email-field-value.subject { font-weight:700; font-size:15px; }
+
+/* EMAIL PREVIEW */
+.email-preview {
+  background:var(--grey-50);
+  border:1px solid var(--grey-200);
+  border-radius:var(--radius);
+  padding:24px 28px;
+  margin:16px 0;
+}
+.email-preview .banner {
+  font-size:18px;
+  font-weight:800;
+  color:var(--dark);
+  margin-bottom:16px;
+  padding-bottom:16px;
+  border-bottom:1px solid var(--grey-200);
+}
+.email-preview .salutation {
+  font-size:14px;
+  color:var(--grey-600);
+  margin-bottom:12px;
+}
+.email-preview .content-block {
+  font-size:14px;
+  color:var(--grey-700);
+  line-height:1.7;
+  margin-bottom:16px;
+  white-space:pre-line;
+}
+.email-preview .cta-block {
+  display:inline-block;
+  padding:10px 24px;
+  background:#000B50;
+  color:var(--white);
+  border-radius:8px;
+  font-size:13px;
+  font-weight:700;
+  text-decoration:none;
+  margin:8px 0;
+  cursor:pointer;
+  transition:background 0.2s, transform 0.2s;
+}
+.email-preview .cta-block:hover {
+  background:#1a2570;
+  transform:translateY(-1px);
+}
+.email-preview .disclaimer {
+  font-size:11px;
+  color:var(--grey-400);
+  margin-top:16px;
+  padding-top:12px;
+  border-top:1px solid var(--grey-200);
+}
+
+/* Illustrative rebate table for E2 */
+.email-preview .rebate-table {
+  width:100%;
+  border-collapse:collapse;
+  margin:14px 0;
+  font-size:13px;
+  background:var(--white);
+  border:1px solid var(--grey-200);
+  border-radius:8px;
+  overflow:hidden;
+}
+.email-preview .rebate-table thead th {
+  background:#000B50;
+  color:var(--white);
+  padding:10px 12px;
+  text-align:left;
+  font-size:12px;
+  font-weight:700;
+}
+.email-preview .rebate-table tbody td {
+  padding:10px 12px;
+  border-bottom:1px solid var(--grey-200);
+  color:var(--grey-700);
+}
+.email-preview .rebate-table tbody tr:last-child td { border-bottom:none; }
+.email-preview .rebate-table tbody td:first-child {
+  font-weight:700;
+  color:var(--dark);
+}
+.email-preview .calc-formula {
+  background:#EEF2FF;
+  border-left:3px solid #000B50;
+  padding:12px 16px;
+  border-radius:6px;
+  font-family:monospace;
+  font-size:13px;
+  color:#000B50;
+  font-weight:600;
+  margin:10px 0;
+  text-align:center;
+}
+.email-preview .illustrative-note {
+  background:var(--amber-light);
+  border-left:3px solid var(--amber);
+  padding:10px 14px;
+  border-radius:6px;
+  font-size:12px;
+  color:var(--grey-700);
+  font-style:italic;
+  margin:12px 0;
+  line-height:1.6;
+}
+
+/* BLANK LANG PLACEHOLDER */
+.lang-placeholder { padding:40px 28px; text-align:center; }
+.lang-placeholder-text {
+  font-size:13px;
+  color:var(--grey-400);
+  font-style:italic;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px) {
+  .header { padding:16px 20px; }
+  .header-inner { flex-direction:column; align-items:flex-start; gap:12px; }
+  .main { padding:20px 16px 60px; }
+  .header-regions { flex-wrap:wrap; }
+  .info-body { padding:16px 20px; }
+  .info-header { padding:16px 20px; flex-direction:column; align-items:flex-start; gap:8px; }
+  .info-tabs { overflow-x:scroll; }
+  .info-tab { flex:0 0 auto; padding:10px 14px; }
+  .in-out-split { flex-direction:column; }
+  .in-out-panel.panel-in { border-radius:9px 9px 0 0; }
+  .in-out-panel.panel-out { border-left:none; border-top:1px solid var(--grey-200); border-radius:0 0 9px 9px; }
+  .journey-flow { gap:8px; }
+  .journey-row { flex-wrap:wrap; gap:8px; }
+  .journey-row .j-node { flex:1 1 45%; min-width:0; }
+  .purpose-row { flex-direction:row; }
+  .purpose-num { width:40px; height:40px; font-size:10px; }
+  .fc-steps { flex-wrap:wrap; }
+  .fc-step { flex:1 1 45%; }
+  .fc-step.has-arrow-right::after { display:none; }
+  .fc-filter-list { grid-template-columns:1fr; }
+  .fc-decision-split { flex-direction:column; gap:20px; }
+  .fc-decision-split::before { display:none; }
+  .fc-exit-row { flex-direction:column; gap:4px; }
+  .fc-exit-trigger { flex:auto; }
+  .decision-tabs { overflow-x:scroll; }
+  .decision-tab { flex:0 0 auto; padding:10px 12px; }
+  .decision-tab-content { padding:14px 16px; }
+  .qf-box { min-width:240px; }
+  .qf-branch-bar, .qf-branch-arms { min-width:240px; }
+  .email-body { padding:16px 20px; }
+  .email-header { padding:16px 20px; flex-direction:column; align-items:flex-start; gap:8px; }
+  .email-field-row { flex-direction:column; gap:4px; }
+  .email-field-label { min-width:auto; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-inner">
+    <div class="header-left">
+      <h1>Retail-to-IB EDM — Strategic Overview</h1>
+      <div class="header-meta-row">
+        <div class="header-meta">Phase 1.0 · Management Reference</div>
+        <div class="header-badges">
+          <span class="header-badge badge-en">EN</span>
+          <span class="header-badge badge-id">ID</span>
+          <span class="header-badge badge-ko">KO</span>
+          <span class="header-badge badge-vn">VN</span>
+          <span class="header-badge badge-th">TH</span>
+          <span class="header-badge badge-ar">AR</span>
+        </div>
+      </div>
+      <div class="header-regions">
+        <span class="header-regions-label">🌏 Target Markets:</span>
+        <div class="header-regions-tags">
+          <span class="region-tag">SEA</span>
+          <span class="region-tag">MENA</span>
+          <span class="region-tag">EN Markets</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- SECTION 1: EXECUTIVE SUMMARY -->
+  <div class="section-title">Section 1 — Executive Summary</div>
+
+  <div id="exec-summary" class="info-card">
+    <div class="info-header" onclick="toggleInfoCard(this)">
+      <div class="info-header-left">
+        <div class="info-icon">📋</div>
+        <div class="info-meta">
+          <h2 onclick="event.stopPropagation()">Executive Summary</h2>
+          <div class="info-subtitle" onclick="event.stopPropagation()">Campaign summary · Phase 1.0</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <span class="info-badge">At a glance</span>
+        <span class="expand-hint">Click to expand</span>
+        <div class="info-toggle"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="transition:transform 0.3s"><polyline points="6 9 12 15 18 9"></polyline></svg></div>
+      </div>
+    </div>
+    <div class="info-collapsible">
+      <div class="info-tabs">
+        <button class="info-tab active" onclick="switchInfoTab(this,'exec','campaign')">Campaign</button>
+        <button class="info-tab" onclick="switchInfoTab(this,'exec','objective')">Objective</button>
+        <button class="info-tab" onclick="switchInfoTab(this,'exec','approach')">Approach</button>
+        <button class="info-tab" onclick="switchInfoTab(this,'exec','target')">Target</button>
+        <button class="info-tab" onclick="switchInfoTab(this,'exec','status')">Status</button>
+      </div>
+
+      <!-- TAB: CAMPAIGN -->
+      <div id="exec-campaign" class="info-tab-content active">
+        <div class="info-body">
+          <p><strong>Retail-to-IB EDM Phase 1.0</strong></p>
+          <p>A 5-email automated drip campaign designed to convert existing retail trading clients into TMGM Introducing Brokers (IBs).</p>
+          <div class="highlight-box">
+            The campaign represents TMGM's first structured, data-driven effort to activate the retail base as a partner-referral channel — replacing the previous ad-hoc approach with a repeatable, measurable journey.
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB: OBJECTIVE -->
+      <div id="exec-objective" class="info-tab-content">
+        <div class="info-body">
+          <p><strong>Unlock a new revenue stream for existing retail clients</strong> while growing TMGM's IB referral network.</p>
+          <p>Phase 1.0 establishes the baseline drip journey to prove the conversion hypothesis and gather clean performance data. Phase 2.0 will layer behavioural segmentation on top of proven performance data — targeting specific trading behaviours, account tiers, and engagement levels.</p>
+          <div class="highlight-box">
+            <strong>Phase 1.0 philosophy:</strong> Clean baseline first, optimisation second. Minimise variables to get trustworthy data before adding complexity.
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB: APPROACH -->
+      <div id="exec-approach" class="info-tab-content">
+        <div class="info-body">
+          <p>A <strong>7-day, 5-email drip sequence</strong> (Email 1 → Email 5) with <strong>3 intentional rest days</strong> between key messages to allow the message to land and avoid email fatigue.</p>
+          <p>Emails progressively move clients through 5 psychological stages:</p>
+          <ul>
+            <li><strong>Email 1 · Curiosity</strong> — Introduce the TMGM IB Program (what it is, how it works in 3 steps)</li>
+            <li><strong>Email 2 · Trust</strong> — Explain how rebates may be calculated — illustrative ranges by product</li>
+            <li><strong>Email 3 · Confidence</strong> — Address common questions about the program</li>
+            <li><strong>Email 4 · Urgency</strong> — Quick recap of the program at a glance</li>
+            <li><strong>Email 5 · Decision</strong> — Final soft close with monthly re-entry</li>
+          </ul>
+          <div class="highlight-box">
+            Clients who don't convert after Email 5 enter a <strong>30-day cool-down</strong>, then re-enter the journey from Email 1 — a repeating cycle designed for long-term brand-safe messaging.
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB: TARGET -->
+      <div id="exec-target" class="info-tab-content">
+        <div class="info-body">
+
+          <div class="info-block">
+            <div class="info-block-title"><span class="block-icon">👤</span>Entry Requirement</div>
+            <div class="info-block-prose">Retail clients who have completed <strong>KYC</strong> and made their <strong>First Time Deposit (FTD)</strong>, with a <strong>7-day buffer</strong> post-FTD before journey entry.</div>
+          </div>
+
+          <div class="info-block">
+            <div class="info-block-title"><span class="block-icon">📣</span>Channels</div>
+            <div class="in-out-split">
+              <div class="in-out-panel panel-in">
+                <div class="in-out-panel-label">✅ IN</div>
+                <div class="in-out-panel-items">
+                  <ul>
+                    <li class="has-tooltip">Organic (no campaign attribution)<span class="info-icon-inline">i</span>
+                      <div class="item-tooltip">Clients who signed up directly to TMGM with no marketing campaign, referrer, or IB behind them. Their <code>source_marketing_campaign</code> field is empty (<code>--</code> or NULL). <strong>Pure retail audience</strong> — no channel conflict, ideal Retail-to-IB targets.</div>
+                    </li>
+                    <li class="has-tooltip">Refer-a-Friend (retail-to-retail referrals)<span class="info-icon-inline">i</span>
+                      <div class="item-tooltip">Clients referred by another retail client through the RAF program. The referrer received a small bonus but does <strong>NOT</strong> earn ongoing commission. Safe to target — the RAF referrer has no financial stake in their trading volume. <strong>Strong IB candidates</strong> as they've already shown referral behaviour.</div>
+                    </li>
+                    <li class="has-tooltip">Marketing-acquired (MKT-* campaigns)<span class="info-icon-inline">i</span>
+                      <div class="item-tooltip">Clients who came via TMGM's own marketing campaigns (ads, social media, content, etc.). Tagged with prefixes like <code>MKT-smgcwtmgmcads</code>, <code>MKT-smmttmgcth</code>. They <strong>belong to TMGM directly</strong> — no third-party relationship manager, so no channel conflict.</div>
+                    </li>
+                    <li class="has-tooltip">Regional channels (e.g. LA)<span class="info-icon-inline">i</span>
+                      <div class="item-tooltip">Clients tagged with regional identifiers like <code>LA</code> (Latin America) without any specific partner or IB attribution. Considered <strong>regional organic</strong> — no managed relationship, safe to target.</div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="in-out-panel panel-out">
+                <div class="in-out-panel-label">❌ OUT</div>
+                <div class="in-out-panel-items">
+                  <ul>
+                    <li class="has-tooltip">Partnership-origin clients (IB / Aff / KOL / Hyb)<span class="info-icon-inline">i</span>
+                      <div class="item-tooltip">Clients who registered via a Partnership campaign page with intent to become an IB (<code>Partnership_IB</code>), affiliate (<code>Partnership_Aff</code>), KOL (<code>Partnership_KOL</code>), or hybrid partner (<code>Partnership_Hyb</code>). They're <strong>already in active partnership funnels</strong> being nurtured by other TMGM teams — our campaign would create overlap and attribution confusion.</div>
+                    </li>
+                    <li class="has-tooltip">IB-referred clients (already tied to an existing IB)<span class="info-icon-inline">i</span>
+                      <div class="item-tooltip">Clients whose <code>source_marketing_campaign</code> starts with <code>IB-</code> (e.g. <code>IB-6158164-STD-USD</code>) — they were referred to TMGM by an existing IB who now earns commission from their trades. Pitching them to become IBs themselves creates <strong>channel conflict</strong> with their referring IB and risks damaging our relationship with the IB partner network.</div>
+                    </li>
+                    <li class="has-tooltip">Sales-acquired clients (already in sales-managed relationships)<span class="info-icon-inline">i</span>
+                      <div class="item-tooltip">Clients acquired directly by TMGM's Sales team (e.g. <code>Sales-6001_WilliamZhang</code>). They have a <strong>dedicated Sales rep</strong> managing the relationship. Marketing to them about IB opportunities would bypass the Sales rep and create internal channel conflict with the Sales team.</div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="info-block">
+            <div class="info-block-title"><span class="block-icon">🌏</span>Regions</div>
+            <div class="in-out-split">
+              <div class="in-out-panel panel-in">
+                <div class="in-out-panel-label">✅ IN</div>
+                <div class="in-out-panel-items">
+                  <span class="inline-list">SEA · MENA · EN Markets</span>
+                </div>
+              </div>
+              <div class="in-out-panel panel-out">
+                <div class="in-out-panel-label">❌ OUT</div>
+                <div class="in-out-panel-items">
+                  <span class="inline-list">Mainland China · Hong Kong · UK · ASIC jurisdictions</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="highlight-box">
+            Channel conflict avoidance is the guiding principle — clients already in an active partnership funnel, IB referral relationship, or sales-managed relationship are intentionally excluded to protect existing stakeholder relationships.
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB: STATUS -->
+      <div id="exec-status" class="info-tab-content">
+        <div class="info-body">
+          <div class="status-row">
+            <span class="status-label">Email content (English draft)</span>
+            <span class="status-pill confirmed">Complete</span>
+          </div>
+          <div class="status-row">
+            <span class="status-label">Filter logic (7 conditions)</span>
+            <span class="status-pill confirmed">Confirmed with data team</span>
+          </div>
+          <div class="status-row">
+            <span class="status-label">Content direction review</span>
+            <span class="status-pill pending">Pending compliance</span>
+          </div>
+          <div class="status-row">
+            <span class="status-label">Translations (ID, KO, VN, TH, AR)</span>
+            <span class="status-pill pending">Pending</span>
+          </div>
+          <div class="status-row">
+            <span class="status-label">Visual design &amp; creative assets</span>
+            <span class="status-pill pending">Pending</span>
+          </div>
+          <div class="status-row">
+            <span class="status-label">Launch readiness</span>
+            <span class="status-pill draft">In preparation</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Sections 2-5 will go here in next builds -->
+
+  <!-- SECTION 2: JOURNEY OVERVIEW -->
+  <div class="section-title">Section 2 — Journey Overview</div>
+
+  <div id="journey-overview" class="info-card">
+    <div class="info-header" onclick="toggleInfoCard(this)">
+      <div class="info-header-left">
+        <div class="info-icon">🔀</div>
+        <div class="info-meta">
+          <h2 onclick="event.stopPropagation()">Journey Overview</h2>
+          <div class="info-subtitle" onclick="event.stopPropagation()">5-email drip sequence over 7 days</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <span class="info-badge">Visual flow</span>
+        <span class="expand-hint">Click to expand</span>
+        <div class="info-toggle"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="transition:transform 0.3s"><polyline points="6 9 12 15 18 9"></polyline></svg></div>
+      </div>
+    </div>
+    <div class="info-collapsible">
+      <div class="info-body">
+
+        <!-- DRIP JOURNEY FLOW -->
+        <div class="journey-flow">
+          <div class="journey-row">
+            <div class="j-node proposed has-arrow-right">
+              <div class="j-tooltip tip-bottom"><strong>Email 1 — Curiosity</strong><br>Day 0 · First email in the sequence</div>
+              <div class="j-num">E1</div>
+              <div class="j-name">The IB Program Explained</div>
+              <div class="j-trigger">Day 0 · Curiosity</div>
+            </div>
+            <div class="j-node rest has-arrow-right">
+              <div class="j-tooltip tip-bottom"><strong>Rest Day 1</strong><br>No email sent — 24-hour pause</div>
+              <div class="j-num">D1</div>
+              <div class="j-name">Rest Day</div>
+              <div class="j-trigger">Let it sink in</div>
+            </div>
+            <div class="j-node proposed has-arrow-right">
+              <div class="j-tooltip tip-bottom"><strong>Email 2 — Trust</strong><br>Day 2 · Second email in the sequence</div>
+              <div class="j-num">E2</div>
+              <div class="j-name">The Math Behind the IB Program</div>
+              <div class="j-trigger">Day 2 · Trust</div>
+            </div>
+            <div class="j-node rest">
+              <div class="j-tooltip tip-bottom"><strong>Rest Day 3</strong><br>No email sent — 24-hour pause</div>
+              <div class="j-num">D3</div>
+              <div class="j-name">Rest Day</div>
+              <div class="j-trigger">Build anticipation</div>
+            </div>
+          </div>
+          <div class="journey-row">
+            <div class="j-node proposed has-arrow-right">
+              <div class="j-tooltip"><strong>Email 3 — Confidence</strong><br>Day 4 · Third email in the sequence</div>
+              <div class="j-num">E3</div>
+              <div class="j-name">Common Questions Answered</div>
+              <div class="j-trigger">Day 4 · Confidence</div>
+            </div>
+            <div class="j-node rest has-arrow-right">
+              <div class="j-tooltip"><strong>Rest Day 5</strong><br>No email sent — 24-hour pause</div>
+              <div class="j-num">D5</div>
+              <div class="j-name">Rest Day</div>
+              <div class="j-trigger">Calm before close</div>
+            </div>
+            <div class="j-node proposed has-arrow-right">
+              <div class="j-tooltip"><strong>Email 4 — Urgency</strong><br>Day 6 · Fourth email in the sequence</div>
+              <div class="j-num">E4</div>
+              <div class="j-name">IB Program at a Glance</div>
+              <div class="j-trigger">Day 6 · Scarcity</div>
+            </div>
+            <div class="j-node proposed">
+              <div class="j-tooltip"><strong>Email 5 — Decision</strong><br>Day 7 · Final email (back-to-back with E4)</div>
+              <div class="j-num">E5</div>
+              <div class="j-name">A Note Before We Step Back</div>
+              <div class="j-trigger">Day 7 · Decision</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- EMAIL PURPOSE LIST -->
+        <div class="email-purposes">
+          <div class="email-purposes-title">Strategic Purpose of Each Email</div>
+
+          <div class="purpose-row">
+            <div class="purpose-num">E1</div>
+            <div class="purpose-content">
+              <div class="purpose-header">Email 1 <span class="purpose-stage">· Curiosity</span></div>
+              <div class="purpose-desc">Introduce the TMGM IB Program — what it is, how it works in 3 steps</div>
+            </div>
+          </div>
+
+          <div class="purpose-row">
+            <div class="purpose-num">E2</div>
+            <div class="purpose-content">
+              <div class="purpose-header">Email 2 <span class="purpose-stage">· Trust</span></div>
+              <div class="purpose-desc">Explain how rebates may be calculated — illustrative ranges by product</div>
+            </div>
+          </div>
+
+          <div class="purpose-row">
+            <div class="purpose-num">E3</div>
+            <div class="purpose-content">
+              <div class="purpose-header">Email 3 <span class="purpose-stage">· Confidence</span></div>
+              <div class="purpose-desc">Address the 3 most common questions (time, network, promotion skills)</div>
+            </div>
+          </div>
+
+          <div class="purpose-row">
+            <div class="purpose-num">E4</div>
+            <div class="purpose-content">
+              <div class="purpose-header">Email 4 <span class="purpose-stage">· Urgency</span></div>
+              <div class="purpose-desc">Quick recap of the program — IB Program at a glance</div>
+            </div>
+          </div>
+
+          <div class="purpose-row">
+            <div class="purpose-num">E5</div>
+            <div class="purpose-content">
+              <div class="purpose-header">Email 5 <span class="purpose-stage">· Decision</span></div>
+              <div class="purpose-desc">Final soft close, followed by 30-day cool-down and monthly re-entry loop</div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- CLOSING ITALIC QUOTE -->
+        <div class="highlight-box">
+          Each email is paced with intention — 3 rest days between key moments allow the message to land and avoid email fatigue, supporting a sustainable long-term relationship with the client.
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Sections 3-5 will go here in next builds -->
+
+  <!-- SECTION 3: QUICK JOURNEY FLOW (HubSpot branching — v2 style, compact) -->
+  <div class="section-title">Section 3 — Quick Journey Flow</div>
+
+  <div id="quick-journey-flow" class="info-card">
+    <div class="info-header" onclick="toggleInfoCard(this)">
+      <div class="info-header-left">
+        <div class="info-icon">⚡</div>
+        <div class="info-meta">
+          <h2 onclick="event.stopPropagation()">Quick Journey Flow</h2>
+          <div class="info-subtitle" onclick="event.stopPropagation()">At-a-glance workflow · HubSpot branching style</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <span class="info-badge">Visual flow</span>
+        <span class="expand-hint">Click to expand</span>
+        <div class="info-toggle"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="transition:transform 0.3s"><polyline points="6 9 12 15 18 9"></polyline></svg></div>
+      </div>
+    </div>
+    <div class="info-collapsible">
+      <div class="info-body">
+
+        <div class="qf-container">
+
+          <!-- ============ UPPER FUNNEL ============ -->
+          <div class="qf-upper-label">🔼 Upstream — Pre-Journey Pipeline</div>
+
+          <div class="qf-box qf-upstream">
+            <div class="qf-tooltip tip-below">The starting point of the pipeline. Any new retail client who opens a trading account through the TMGM portal and completes KYC verification.</div>
+            <div class="qf-box-title">🌐 Retail Client Signs Up</div>
+            <div class="qf-box-sub">Via TMGM Portal</div>
+          </div>
+          <div class="qf-vline"></div>
+
+          <div class="qf-box qf-checkpoint">
+            <div class="qf-tooltip tip-below">Client completes KYC verification — <code>ID_Verified = Verified</code>. Regulatory gate required before any marketing.</div>
+            <div class="qf-box-title">✅ KYC Verified</div>
+            <div class="qf-box-sub"><code style="font-family:monospace;font-size:10px;">ID_Verified = Verified</code></div>
+          </div>
+          <div class="qf-vline"></div>
+
+          <div class="qf-box qf-checkpoint">
+            <div class="qf-tooltip tip-below">Client has made their First Time Deposit — <code>TA_First_Deposit_Time</code> is captured. Tracked by Nick Gao.</div>
+            <div class="qf-box-title">💰 FTD Completed</div>
+            <div class="qf-box-sub"><code style="font-family:monospace;font-size:10px;">TA_First_Deposit_Time IS NOT NULL</code></div>
+          </div>
+          <div class="qf-vline"></div>
+
+          <div class="qf-box qf-buffer">
+            <div class="qf-tooltip tip-below"><strong>7-day wait period after FTD.</strong> Ensures the KYC-FTD onboarding journey has finished and the client has had time to actually trade before we pitch IB.</div>
+            <div class="qf-box-title">🕐 7-Day Buffer Period</div>
+            <div class="qf-box-sub"><code style="font-family:monospace;font-size:10px;">TA_First_Deposit_Time ≤ (today - 7d)</code></div>
+          </div>
+          <div class="qf-vline"></div>
+
+          <div class="qf-box qf-upstream">
+            <div class="qf-tooltip tip-below">SFMC continuously checks every client against the Phase 1.0 filter criteria. The moment a client's data matches all conditions, they automatically enter the journey.</div>
+            <div class="qf-box-title">⏳ Continuous Filter Check</div>
+            <div class="qf-box-sub">All 7 filter conditions matched? (real-time)</div>
+          </div>
+
+          <div class="qf-upstream-divider"></div>
+
+          <!-- ============ ENTRY ============ -->
+          <div class="qf-box qf-entry">
+            <div class="qf-tooltip tip-below"><strong>Day 0 of the 5-email journey starts here.</strong> Each client enters on their own personal timeline — whenever they match the full filter.</div>
+            <div class="qf-box-title">📥 Retail Client Enters Journey</div>
+            <div class="qf-box-sub">Automated · SEA + MENA + EN markets</div>
+          </div>
+          <div class="qf-vline"></div>
+
+          <!-- ============ E1 ============ -->
+          <div class="qf-box qf-email">
+            <div class="qf-tooltip tip-below"><strong>Stage 1 · Awareness.</strong> First email, sent immediately on entry. Introduces the IB Program — what it is and how it works in 3 steps.</div>
+            <div class="qf-box-title">E1 — IB Program Explained</div>
+            <div class="qf-box-sub">Day 0 · Curiosity</div>
+          </div>
+          <div class="qf-vline"></div>
+
+          <!-- DECISION 1 -->
+          <div class="qf-branch">
+            <div class="qf-decision">
+              <div class="qf-tooltip tip-below">At every step, SFMC checks the <strong>Is_IB</strong> field. If <strong>true</strong>, client exits the journey and flows to IB Welcome Email.</div>
+              <div class="qf-box-title">Converted to IB?</div>
+            </div>
+            <div class="qf-branch-t"><div class="qf-branch-stem"></div><div class="qf-branch-bar"></div></div>
+            <div class="qf-branch-arms">
+              <div class="qf-branch-arm qf-branch-arm-no">
+                <span class="qf-label no">NO</span>
+                <div class="qf-vline"></div>
+                <div class="qf-box qf-rest">
+                  <div class="qf-tooltip tip-below">No email sent. 24-hour rest day to let E1's money hook sink in.</div>
+                  <div class="qf-box-title">💤 Rest — Day 1</div>
+                </div>
+                <div class="qf-rest-arrow"><div class="qf-rest-line"></div>↓<div class="qf-rest-label">to E2</div></div>
+              </div>
+              <div class="qf-branch-arm qf-branch-arm-yes">
+                <span class="qf-label yes">YES</span>
+                <div class="qf-vline"></div>
+                <div class="qf-exit-box">
+                  <div class="qf-tooltip tip-below"><strong>Exit point — client has become an IB.</strong> They leave this journey and enter the separate IB Onboarding journey.</div>
+                  <div class="qf-box-title">✅ IB Welcome Email</div>
+                  <div class="qf-box-sub" style="font-size:9px;color:var(--green);margin-top:1px;">Separate journey</div>
+                </div>
+                <div class="qf-ib-arrow"><div class="qf-ib-line"></div>↓<div class="qf-ib-label">IB onboarding</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="qf-vline"></div>
+
+          <!-- ============ E2 ============ -->
+          <div class="qf-box qf-email">
+            <div class="qf-tooltip tip-below"><strong>Stage 2 · Consideration.</strong> Sent 2 days after entry. Explains how rebates may be calculated — illustrative ranges by product.</div>
+            <div class="qf-box-title">E2 — The Math Behind</div>
+            <div class="qf-box-sub">Day 2 · Trust</div>
+          </div>
+          <div class="qf-vline"></div>
+
+          <!-- DECISION 2 -->
+          <div class="qf-branch">
+            <div class="qf-decision">
+              <div class="qf-tooltip tip-below">At every step, SFMC checks the <strong>Is_IB</strong> field. If <strong>true</strong>, client exits the journey and flows to IB Welcome Email.</div>
+              <div class="qf-box-title">Converted to IB?</div>
+            </div>
+            <div class="qf-branch-t"><div class="qf-branch-stem"></div><div class="qf-branch-bar"></div></div>
+            <div class="qf-branch-arms">
+              <div class="qf-branch-arm qf-branch-arm-no">
+                <span class="qf-label no">NO</span>
+                <div class="qf-vline"></div>
+                <div class="qf-box qf-rest">
+                  <div class="qf-tooltip tip-below">No email sent. 24-hour rest day — doubts form naturally so E3's objection handling lands perfectly.</div>
+                  <div class="qf-box-title">💤 Rest — Day 3</div>
+                </div>
+                <div class="qf-rest-arrow"><div class="qf-rest-line"></div>↓<div class="qf-rest-label">to E3</div></div>
+              </div>
+              <div class="qf-branch-arm qf-branch-arm-yes">
+                <span class="qf-label yes">YES</span>
+                <div class="qf-vline"></div>
+                <div class="qf-exit-box">
+                  <div class="qf-tooltip tip-below"><strong>Exit point — client has become an IB.</strong> They leave this journey and enter the separate IB Onboarding journey.</div>
+                  <div class="qf-box-title">✅ IB Welcome Email</div>
+                  <div class="qf-box-sub" style="font-size:9px;color:var(--green);margin-top:1px;">Separate journey</div>
+                </div>
+                <div class="qf-ib-arrow"><div class="qf-ib-line"></div>↓<div class="qf-ib-label">IB onboarding</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="qf-vline"></div>
+
+          <!-- ============ E3 ============ -->
+          <div class="qf-box qf-email">
+            <div class="qf-tooltip tip-below"><strong>Stage 3 · Confidence.</strong> Sent 4 days after entry. Answers 3 common questions about time, network, and promotion.</div>
+            <div class="qf-box-title">E3 — Common Questions</div>
+            <div class="qf-box-sub">Day 4 · Confidence</div>
+          </div>
+          <div class="qf-vline"></div>
+
+          <!-- DECISION 3 -->
+          <div class="qf-branch">
+            <div class="qf-decision">
+              <div class="qf-tooltip tip-below">At every step, SFMC checks the <strong>Is_IB</strong> field. If <strong>true</strong>, client exits the journey and flows to IB Welcome Email.</div>
+              <div class="qf-box-title">Converted to IB?</div>
+            </div>
+            <div class="qf-branch-t"><div class="qf-branch-stem"></div><div class="qf-branch-bar"></div></div>
+            <div class="qf-branch-arms">
+              <div class="qf-branch-arm qf-branch-arm-no">
+                <span class="qf-label no">NO</span>
+                <div class="qf-vline"></div>
+                <div class="qf-box qf-rest">
+                  <div class="qf-tooltip tip-below">No email sent. Final rest day before the closing one-two punch (E4 + E5 back-to-back).</div>
+                  <div class="qf-box-title">💤 Rest — Day 5</div>
+                </div>
+                <div class="qf-rest-arrow"><div class="qf-rest-line"></div>↓<div class="qf-rest-label">to E4</div></div>
+              </div>
+              <div class="qf-branch-arm qf-branch-arm-yes">
+                <span class="qf-label yes">YES</span>
+                <div class="qf-vline"></div>
+                <div class="qf-exit-box">
+                  <div class="qf-tooltip tip-below"><strong>Exit point — client has become an IB.</strong> They leave this journey and enter the separate IB Onboarding journey.</div>
+                  <div class="qf-box-title">✅ IB Welcome Email</div>
+                  <div class="qf-box-sub" style="font-size:9px;color:var(--green);margin-top:1px;">Separate journey</div>
+                </div>
+                <div class="qf-ib-arrow"><div class="qf-ib-line"></div>↓<div class="qf-ib-label">IB onboarding</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="qf-vline"></div>
+
+          <!-- ============ E4 ============ -->
+          <div class="qf-box qf-email" style="border-color:rgba(232,131,58,0.3);">
+            <div class="qf-tooltip tip-below"><strong>Stage 4 · Scarcity.</strong> Sent 6 days after entry. Quick recap of the IB Program — at a glance.</div>
+            <div class="qf-box-title" style="color:#e8833a;">E4 — At a Glance</div>
+            <div class="qf-box-sub">Day 6 · Scarcity</div>
+          </div>
+          <div class="qf-vline"></div>
+
+          <!-- DECISION 4 -->
+          <div class="qf-branch">
+            <div class="qf-decision">
+              <div class="qf-tooltip tip-below">At every step, SFMC checks the <strong>Is_IB</strong> field. If <strong>true</strong>, client exits the journey and flows to IB Welcome Email.</div>
+              <div class="qf-box-title">Converted to IB?</div>
+            </div>
+            <div class="qf-branch-t"><div class="qf-branch-stem"></div><div class="qf-branch-bar"></div></div>
+            <div class="qf-branch-arms">
+              <div class="qf-branch-arm qf-branch-arm-no">
+                <span class="qf-label no">NO</span>
+                <div class="qf-vline"></div>
+                <div class="qf-box qf-email" style="padding:8px 16px;min-width:auto;border-color:rgba(211,47,47,0.3);">
+                  <div class="qf-tooltip tip-below"><strong>Stage 5 · Decision · Final.</strong> Back-to-back with E4 (no rest). Soft close — sets expectation of monthly check-in.</div>
+                  <div class="qf-box-title" style="color:#d32f2f;font-size:11px;">E5 — Step Back Note</div>
+                  <div class="qf-box-sub">Day 7 · No rest</div>
+                </div>
+              </div>
+              <div class="qf-branch-arm qf-branch-arm-yes">
+                <span class="qf-label yes">YES</span>
+                <div class="qf-vline"></div>
+                <div class="qf-exit-box">
+                  <div class="qf-tooltip tip-below"><strong>Exit point — client has become an IB.</strong> They leave this journey and enter the separate IB Onboarding journey.</div>
+                  <div class="qf-box-title">✅ IB Welcome Email</div>
+                  <div class="qf-box-sub" style="font-size:9px;color:var(--green);margin-top:1px;">Separate journey</div>
+                </div>
+                <div class="qf-ib-arrow"><div class="qf-ib-line"></div>↓<div class="qf-ib-label">IB onboarding</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="qf-vline"></div>
+
+          <!-- DECISION 5 (after E5) -->
+          <div class="qf-branch">
+            <div class="qf-decision">
+              <div class="qf-tooltip">At every step, SFMC checks the <strong>Is_IB</strong> field. If <strong>true</strong>, client exits the journey and flows to IB Welcome Email.</div>
+              <div class="qf-box-title">Converted to IB?</div>
+            </div>
+            <div class="qf-branch-t"><div class="qf-branch-stem"></div><div class="qf-branch-bar"></div></div>
+            <div class="qf-branch-arms">
+              <div class="qf-branch-arm qf-branch-arm-no">
+                <span class="qf-label no">NO</span>
+                <div class="qf-vline"></div>
+                <div class="qf-cooldown-box">
+                  <div class="qf-tooltip">If client completes all 5 emails without converting, they enter a <strong>30-day cool-down period</strong>. After 30 days, they're automatically re-entered into E1 and the cycle restarts. Monthly re-blast logic for Phase 1.0.</div>
+                  <div class="qf-box-title">30-Day Cool-down</div>
+                  <div class="qf-box-sub" style="font-size:9px;color:var(--amber);margin-top:1px;">Then re-enter E1</div>
+                </div>
+              </div>
+              <div class="qf-branch-arm qf-branch-arm-yes">
+                <span class="qf-label yes">YES</span>
+                <div class="qf-vline"></div>
+                <div class="qf-exit-box">
+                  <div class="qf-tooltip"><strong>Exit point — client has become an IB.</strong> They leave this journey and enter the separate IB Onboarding journey.</div>
+                  <div class="qf-box-title">✅ IB Welcome Email</div>
+                  <div class="qf-box-sub" style="font-size:9px;color:var(--green);margin-top:1px;">Separate journey</div>
+                </div>
+                <div class="qf-ib-arrow"><div class="qf-ib-line"></div>↓<div class="qf-ib-label">IB onboarding</div></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="highlight-box">
+          Quick overview of the full journey logic — upstream funnel, 5 emails, continuous <code>Is_IB</code> conversion checks, exit points, and monthly re-blast loop. For detailed filter conditions and exit logic, see Section 4.
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4: JOURNEY DECISION FLOWCHART (existing — content untouched, just renumbered) -->
+  <div class="section-title">Section 4 — Journey Decision Flowchart</div>
+
+  <div id="journey-flowchart" class="info-card">
+    <div class="info-header" onclick="toggleInfoCard(this)">
+      <div class="info-header-left">
+        <div class="info-icon">🔀</div>
+        <div class="info-meta">
+          <h2 onclick="event.stopPropagation()">Journey Decision Flowchart</h2>
+          <div class="info-subtitle" onclick="event.stopPropagation()">Full branching logic · Upstream → Journey → Decision → Exits</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <span class="info-badge">Detailed flow</span>
+        <span class="expand-hint">Click to expand</span>
+        <div class="info-toggle"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="transition:transform 0.3s"><polyline points="6 9 12 15 18 9"></polyline></svg></div>
+      </div>
+    </div>
+    <div class="info-collapsible">
+      <div class="info-body">
+
+        <!-- ============ BLOCK 1: UPSTREAM ============ -->
+        <div class="fc-block">
+          <div class="fc-block-title"><span class="fc-block-num">1</span>Upstream — Pre-Journey Entry</div>
+
+          <div class="fc-steps">
+            <div class="fc-step step-active has-arrow-right has-tooltip">
+              <div class="fc-step-label">Step 1</div>
+              <div class="fc-step-name">Client Signs Up</div>
+              <span class="info-icon-inline">i</span>
+              <div class="item-tooltip">Client registers with TMGM through any retail channel (organic, RAF, marketing campaign, regional). Signup event is logged and tagged with a <code>source_marketing_campaign</code> attribution.</div>
+            </div>
+            <div class="fc-step step-active has-arrow-right has-tooltip">
+              <div class="fc-step-label">Step 2</div>
+              <div class="fc-step-name">KYC Verified</div>
+              <span class="info-icon-inline">i</span>
+              <div class="item-tooltip">Client completes identity verification (passport, proof of address, etc.). <code>ID_Verified = Verified</code> is the regulatory gate — no marketing emails can be sent before this point.</div>
+            </div>
+            <div class="fc-step step-active has-arrow-right has-tooltip">
+              <div class="fc-step-label">Step 3</div>
+              <div class="fc-step-name">FTD Completed</div>
+              <span class="info-icon-inline">i</span>
+              <div class="item-tooltip">Client makes their <strong>First Time Deposit</strong> and begins trading. <code>TA_First_Deposit_Time</code> is captured. Without FTD, the client is not a real trading prospect for the IB program.</div>
+            </div>
+            <div class="fc-step step-active has-arrow-right has-tooltip">
+              <div class="fc-step-label">Step 4</div>
+              <div class="fc-step-name">7-Day Buffer</div>
+              <span class="info-icon-inline">i</span>
+              <div class="item-tooltip">A deliberate <strong>7-day quiet period</strong> post-FTD. This lets the client experience the trading platform organically before receiving our IB pitch — respecting their onboarding journey and improving receptivity.</div>
+            </div>
+          </div>
+
+          <div class="fc-filter-box">
+            <div class="fc-filter-title">🔍 Continuous Filter Check — 7 Conditions Matched</div>
+            <div class="fc-filter-list">
+              <div class="fc-filter-item"><span class="fc-check">✓</span><code>ID_Verified = Verified</code></div>
+              <div class="fc-filter-item"><span class="fc-check">✓</span><code>Is_IB = false</code></div>
+              <div class="fc-filter-item"><span class="fc-check">✓</span><code>Member_Lead_Source NOT CONTAINS "IB"</code></div>
+              <div class="fc-filter-item"><span class="fc-check">✓</span><code>MailingCountry IN (target markets)</code></div>
+              <div class="fc-filter-item"><span class="fc-check">✓</span><code>TA_First_Deposit_Time IS NOT NULL</code></div>
+              <div class="fc-filter-item"><span class="fc-check">✓</span><code>TA_First_Deposit_Time ≤ (today − 7 days)</code></div>
+              <div class="fc-filter-item" style="grid-column:1 / -1;"><span class="fc-check">✓</span><code>source_marketing_campaign NOT CONTAINS "Partnership" AND NOT STARTSWITH "IB-" AND NOT STARTSWITH "Sales-"</code></div>
+            </div>
+            <div class="fc-filter-outcome">↓ &nbsp; All 7 matched → Client enters Retail-to-IB journey</div>
+          </div>
+        </div>
+
+        <!-- ============ BLOCK 2: DRIP JOURNEY ============ -->
+        <div class="fc-block">
+          <div class="fc-block-title"><span class="fc-block-num">2</span>Drip Journey — 5 Emails Over 7 Days</div>
+
+          <div class="journey-flow">
+            <div class="journey-row">
+              <div class="j-node proposed has-arrow-right">
+                <div class="j-tooltip tip-bottom"><strong>Email 1 — Curiosity</strong><br>Day 0 · The IB Program Explained</div>
+                <div class="j-num">E1</div>
+                <div class="j-name">The IB Program Explained</div>
+                <div class="j-trigger">Day 0</div>
+              </div>
+              <div class="j-node rest has-arrow-right">
+                <div class="j-tooltip tip-bottom"><strong>Rest Day 1</strong><br>24-hour pause — no email sent</div>
+                <div class="j-num">D1</div>
+                <div class="j-name">Rest Day</div>
+                <div class="j-trigger">Let it sink in</div>
+              </div>
+              <div class="j-node proposed has-arrow-right">
+                <div class="j-tooltip tip-bottom"><strong>Email 2 — Trust</strong><br>Day 2 · The Math Behind the IB Program</div>
+                <div class="j-num">E2</div>
+                <div class="j-name">The Math Behind the IB Program</div>
+                <div class="j-trigger">Day 2</div>
+              </div>
+              <div class="j-node rest">
+                <div class="j-tooltip tip-bottom"><strong>Rest Day 3</strong><br>24-hour pause — no email sent</div>
+                <div class="j-num">D3</div>
+                <div class="j-name">Rest Day</div>
+                <div class="j-trigger">Build anticipation</div>
+              </div>
+            </div>
+            <div class="journey-row">
+              <div class="j-node proposed has-arrow-right">
+                <div class="j-tooltip"><strong>Email 3 — Confidence</strong><br>Day 4 · Common Questions Answered</div>
+                <div class="j-num">E3</div>
+                <div class="j-name">Common Questions Answered</div>
+                <div class="j-trigger">Day 4</div>
+              </div>
+              <div class="j-node rest has-arrow-right">
+                <div class="j-tooltip"><strong>Rest Day 5</strong><br>24-hour pause — no email sent</div>
+                <div class="j-num">D5</div>
+                <div class="j-name">Rest Day</div>
+                <div class="j-trigger">Calm before close</div>
+              </div>
+              <div class="j-node proposed has-arrow-right">
+                <div class="j-tooltip"><strong>Email 4 — Urgency</strong><br>Day 6 · IB Program at a Glance</div>
+                <div class="j-num">E4</div>
+                <div class="j-name">IB Program at a Glance</div>
+                <div class="j-trigger">Day 6</div>
+              </div>
+              <div class="j-node proposed">
+                <div class="j-tooltip"><strong>Email 5 — Decision</strong><br>Day 7 · A Note Before We Step Back (back-to-back with E4)</div>
+                <div class="j-num">E5</div>
+                <div class="j-name">A Note Before We Step Back</div>
+                <div class="j-trigger">Day 7</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="fc-note">
+            <strong>⚡ Continuous check during journey:</strong> At any point during the 7-day journey, if a client becomes an IB (<code>Is_IB = true</code>), they immediately exit this journey and are transferred to the IB Welcome journey — regardless of which email they're currently on.
+          </div>
+        </div>
+
+        <!-- ============ BLOCK 3: DECISION POINT ============ -->
+        <div class="fc-block">
+          <div class="fc-block-title"><span class="fc-block-num">3</span>Decision Point — After Email 5</div>
+
+          <div class="fc-decision-wrapper">
+            <div class="fc-decision-question">Did the client become an IB by the end of the journey?</div>
+            <div class="fc-decision-arrow"></div>
+            <div class="fc-decision-split">
+
+              <!-- YES branch -->
+              <div class="fc-decision-branch">
+                <div class="fc-branch-label yes">✅ YES · Became IB</div>
+                <div class="fc-branch-arrow"></div>
+                <div class="fc-branch-node exit has-tooltip">
+                  Exit Journey
+                  <span class="info-icon-inline">i</span>
+                  <div class="item-tooltip">Client is automatically removed from the Retail-to-IB journey once <code>Is_IB = true</code>. Marketing stops sending the remaining emails in this sequence.</div>
+                </div>
+                <div class="fc-branch-arrow"></div>
+                <div class="fc-branch-node exit has-tooltip">
+                  → Enter IB Welcome Journey
+                  <span class="info-icon-inline">i</span>
+                  <div class="item-tooltip">A <strong>separate automated journey</strong> handles new IBs. Contains: Welcome Email, QR Code Feature explanation, Scale Your Earnings tips. This journey is managed by a different team and has its own entry triggers.</div>
+                </div>
+              </div>
+
+              <!-- NO branch -->
+              <div class="fc-decision-branch">
+                <div class="fc-branch-label no">❌ NO · Still Retail</div>
+                <div class="fc-branch-arrow"></div>
+                <div class="fc-branch-node cooldown has-tooltip">
+                  30-Day Cool-Down
+                  <span class="info-icon-inline">i</span>
+                  <div class="item-tooltip">Client enters a <strong>30-day quiet period</strong> with zero marketing contact from this journey. This prevents fatigue and respects their decision not to convert in the first pass.</div>
+                </div>
+                <div class="fc-branch-arrow"></div>
+                <div class="fc-branch-node has-tooltip" style="background:var(--grey-50); border-color:var(--grey-300); color:var(--grey-700); font-weight:600;">
+                  Re-check Filter (7 conditions)
+                  <span class="info-icon-inline">i</span>
+                  <div class="item-tooltip">After 30 days, the filter runs again. If anything changed during the cool-down (became IB, unsubscribed, closed account, etc.), the client's status is re-evaluated before decisions.</div>
+                </div>
+                <div class="fc-branch-arrow"></div>
+                <div class="fc-decision-split" style="gap:16px;">
+                  <div class="fc-decision-branch">
+                    <div class="fc-branch-label yes" style="font-size:10px; padding:3px 10px;">Still qualifies</div>
+                    <div class="fc-branch-node reentry has-tooltip">
+                      Re-enter Email 1
+                      <span class="info-icon-inline">i</span>
+                      <div class="item-tooltip">Client starts the full 5-email sequence again from the top. This creates a <strong>monthly re-blast loop</strong> for long-term conversion — they'll see the campaign roughly once per month until they either become an IB or no longer qualify.</div>
+                    </div>
+                  </div>
+                  <div class="fc-decision-branch">
+                    <div class="fc-branch-label no" style="font-size:10px; padding:3px 10px;">No longer qualifies</div>
+                    <div class="fc-branch-node permanent-exit has-tooltip">
+                      Permanent Exit
+                      <span class="info-icon-inline">i</span>
+                      <div class="item-tooltip">Client has failed one or more of the 7 filter conditions (e.g. unsubscribed, closed account, became IB via another channel, moved regions). Removed from the journey — cannot re-enter until all 7 conditions are re-satisfied.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- ============ BLOCK 4: EXIT CONDITIONS ============ -->
+        <div class="fc-block">
+          <div class="fc-block-title"><span class="fc-block-num">4</span>Exit Conditions — Can Trigger Anytime</div>
+
+          <div class="fc-exits">
+            <div class="fc-exits-title">🚫 5 Triggers That End the Journey</div>
+
+            <div class="fc-exit-row">
+              <div class="fc-exit-trigger"><code>Is_IB = true</code></div>
+              <div class="fc-exit-outcome">Client became an IB — exits Retail-to-IB, enters IB Welcome Journey (separate sequence)</div>
+            </div>
+            <div class="fc-exit-row">
+              <div class="fc-exit-trigger">Unsubscribed</div>
+              <div class="fc-exit-outcome">Client unsubscribed from marketing emails — <strong>permanent exit</strong> from this journey</div>
+            </div>
+            <div class="fc-exit-row">
+              <div class="fc-exit-trigger">Closed Account</div>
+              <div class="fc-exit-outcome">Client closed their TMGM account — <strong>permanent exit</strong> from this journey</div>
+            </div>
+            <div class="fc-exit-row">
+              <div class="fc-exit-trigger">Hard Bounce</div>
+              <div class="fc-exit-outcome">Email address is invalid or permanently undeliverable — <strong>permanent exit</strong> from this journey</div>
+            </div>
+            <div class="fc-exit-row">
+              <div class="fc-exit-trigger">Out of Target Region</div>
+              <div class="fc-exit-outcome">Client moved to a non-target jurisdiction (e.g. UK, ASIC region, China, HK) — exits journey</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CLOSING ITALIC QUOTE -->
+        <div class="highlight-box">
+          The flowchart shows how we ensure the journey is a continuous loop, not a one-shot attempt. Clients who don't convert stay eligible via monthly re-entry — supporting long-term conversion without creating fatigue. Exit conditions protect client experience at every step.
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Sections 4-5 will go here in next builds -->
+
+  <!-- SECTION 4: STRATEGIC DECISIONS -->
+  <div class="section-title">Section 5 — Strategic Decisions</div>
+
+  <div id="strategic-decisions" class="info-card">
+    <div class="info-header" onclick="toggleInfoCard(this)">
+      <div class="info-header-left">
+        <div class="info-icon">💡</div>
+        <div class="info-meta">
+          <h2 onclick="event.stopPropagation()">Strategic Decisions</h2>
+          <div class="info-subtitle" onclick="event.stopPropagation()">5 key decisions behind the Phase 1.0 design</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <span class="info-badge">Decision log</span>
+        <span class="expand-hint">Click to expand</span>
+        <div class="info-toggle"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="transition:transform 0.3s"><polyline points="6 9 12 15 18 9"></polyline></svg></div>
+      </div>
+    </div>
+    <div class="info-collapsible">
+      <div class="info-body">
+
+        <!-- ============ CATEGORY: AUDIENCE EXCLUSIONS ============ -->
+        <div class="decision-category">Audience Exclusions</div>
+
+        <!-- DECISION 1 -->
+        <div id="decision-1" class="decision-card">
+          <div class="decision-header" onclick="toggleDecisionCard(this)">
+            <div class="decision-header-left">
+              <div class="decision-icon">🤝</div>
+              <div class="decision-meta">
+                <div class="decision-title" onclick="event.stopPropagation()">Decision 1 — Why We Exclude IB-Referred Clients</div>
+                <div class="decision-summary" onclick="event.stopPropagation()">Protect existing IB relationships · Avoid channel cannibalisation</div>
+              </div>
+            </div>
+            <div class="decision-toggle"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="transition:transform 0.3s"><polyline points="6 9 12 15 18 9"></polyline></svg></div>
+          </div>
+          <div class="decision-collapsible">
+            <div class="decision-tabs">
+              <button class="decision-tab active" onclick="switchDecisionTab(this,'d1','scenario')">🎬 Scenario</button>
+              <button class="decision-tab" onclick="switchDecisionTab(this,'d1','problems')">🚨 Problems</button>
+              <button class="decision-tab" onclick="switchDecisionTab(this,'d1','decision')">✅ Our Decision</button>
+              <button class="decision-tab" onclick="switchDecisionTab(this,'d1','principle')">🎯 Principle</button>
+            </div>
+
+            <!-- Tab: SCENARIO -->
+            <div id="d1-scenario" class="decision-tab-content active">
+
+              <div class="scenario-box">
+                <div class="scenario-box-header"><span class="scenario-icon">🤝</span>Meet IB Partner A</div>
+                <div class="scenario-box-body">
+                  They're an active TMGM IB who has built a personal network of 20 retail traders they personally referred to TMGM. These traders sign up, fund their accounts, and every time they trade, IB Partner A earns a daily commission. IB Partner A probably has a WhatsApp group with these clients, offers trading tips, and answers questions — they've built a real relationship.
+                </div>
+              </div>
+
+              <div class="scenario-box">
+                <div class="scenario-box-header"><span class="scenario-icon">👤</span>Meet Client B</div>
+                <div class="scenario-box-body">
+                  One of IB Partner A's referred traders. Client B signed up to TMGM specifically because IB Partner A recommended it. Client B's <code>source_marketing_campaign</code> is tagged <code>IB-XXXXXXX-STD-USD</code> (where XXXXXXX is IB Partner A's unique ID). IB Partner A earns commission from every trade Client B places.
+                </div>
+              </div>
+
+              <div>
+                <div class="scenario-quote-label"><span>⚠️</span>Now Imagine...</div>
+                <div class="scenario-quote-body">
+                  TMGM's Retail-to-IB campaign sends Client B an email about becoming a TMGM Introducing Broker.
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Tab: PROBLEMS -->
+            <div id="d1-problems" class="decision-tab-content">
+              <div class="problem-item">
+                <div class="problem-num">1</div>
+                <div class="problem-text"><strong>Channel cannibalisation.</strong> If Client B becomes an IB, they could start recruiting from the same network IB Partner A would have approached — but any new sign-ups now go under Client B's IB code, not IB Partner A's. IB Partner A loses future revenue opportunity, indirectly caused by TMGM's own marketing.</div>
+              </div>
+              <div class="problem-item">
+                <div class="problem-num">2</div>
+                <div class="problem-text"><strong>Relationship damage with IB Partner A.</strong> If IB Partner A discovers TMGM is directly marketing IB opportunities to their referred clients, they may feel undercut — as if TMGM is stealing from them. This is a serious breach of partnership trust.</div>
+              </div>
+              <div class="problem-item">
+                <div class="problem-num">3</div>
+                <div class="problem-text"><strong>IB network attrition risk.</strong> Upset IBs can take their network to competing brokers, badmouth TMGM in industry communities, or stop actively referring new clients. In a broker's business model, the IB channel is often worth more long-term than any single retail-to-IB conversion.</div>
+              </div>
+              <div class="problem-item">
+                <div class="problem-num">4</div>
+                <div class="problem-text"><strong>Attribution confusion.</strong> If Client B converts, who gets credit? Marketing would claim the Retail-to-IB campaign converted them, but IB Partner A would argue they brought Client B to TMGM in the first place. Clean attribution is impossible.</div>
+              </div>
+            </div>
+
+            <!-- Tab: OUR DECISION -->
+            <div id="d1-decision" class="decision-tab-content">
+              <div class="decision-statement">
+                <strong>Exclude all clients where</strong> <code>source_marketing_campaign</code> <strong>starts with</strong> <code>IB-</code> <strong>— regardless of region or specific IB.</strong>
+              </div>
+              <p>This is added as one of the 7 filter conditions enforced in the Retail-to-IB journey. A client acquired through any existing IB referral will never enter this campaign, protecting the relationship their referring IB has with them.</p>
+              <p>Specifically, the filter condition checks: <code>source_marketing_campaign NOT STARTSWITH "IB-"</code> (with NULL values allowed, so pure organic clients still qualify).</p>
+              <p><strong>Note on Refer-a-Friend:</strong> This exclusion applies only to <code>IB-</code> prefixed clients — <strong>not</strong> to <code>Refer Friend</code> clients. RAF clients are retail-to-retail referrals where the referrer gets a one-time bonus but does NOT earn ongoing commission — so there's no ongoing partnership relationship to protect.</p>
+            </div>
+
+            <!-- Tab: PRINCIPLE -->
+            <div id="d1-principle" class="decision-tab-content">
+              <p><strong>The underlying framework: Channel Conflict Avoidance.</strong></p>
+              <p>In partner-driven business models (affiliate programs, IB networks, reseller channels), there's a well-established industry principle: <em>if a partner brought you a customer, don't market to that customer in ways that compete with what the partner is doing.</em></p>
+              <p>TMGM's IBs are essentially commissioned partners. They acquire retail clients, earn from trading volume, and build long-term relationships. If TMGM turns around and targets those same clients to become IBs themselves — potentially pulling recruits away from the original IB's network — we damage the partnership channel that drives a significant portion of our business.</p>
+              <div class="highlight-box">
+                Protecting the goose that lays the golden eggs. Our IB partners are worth far more long-term than the short-term gains from converting their referred clients into competing IBs.
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Decisions 2-9 will go here in next build -->
+
+        <!-- DECISION 2 -->
+        <div id="decision-2" class="decision-card">
+          <div class="decision-header" onclick="toggleDecisionCard(this)">
+            <div class="decision-header-left">
+              <div class="decision-icon">💼</div>
+              <div class="decision-meta">
+                <div class="decision-title" onclick="event.stopPropagation()">Decision 2 — Why We Exclude Sales-Acquired Clients</div>
+                <div class="decision-summary" onclick="event.stopPropagation()">Protect internal Sales team relationships · Avoid cross-channel friction</div>
+              </div>
+            </div>
+            <div class="decision-toggle"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="transition:transform 0.3s"><polyline points="6 9 12 15 18 9"></polyline></svg></div>
+          </div>
+          <div class="decision-collapsible">
+            <div class="decision-tabs">
+              <button class="decision-tab active" onclick="switchDecisionTab(this,'d2','scenario')">🎬 Scenario</button>
+              <button class="decision-tab" onclick="switchDecisionTab(this,'d2','problems')">🚨 Problems</button>
+              <button class="decision-tab" onclick="switchDecisionTab(this,'d2','decision')">✅ Our Decision</button>
+              <button class="decision-tab" onclick="switchDecisionTab(this,'d2','principle')">🎯 Principle</button>
+            </div>
+
+            <!-- Tab: SCENARIO -->
+            <div id="d2-scenario" class="decision-tab-content active">
+
+              <div class="scenario-box">
+                <div class="scenario-box-header"><span class="scenario-icon">💼</span>Meet Sales Rep A</div>
+                <div class="scenario-box-body">
+                  They're a TMGM Sales rep (for example, William Zhang, internal ID 6001). Their job is to directly contact prospects, build relationships, walk them through opening an account, help them fund, and maintain ongoing contact. Sales Rep A personally manages a portfolio of clients they've recruited — calling them regularly, sending market updates, answering questions, and being their dedicated point-of-contact at TMGM.
+                </div>
+              </div>
+
+              <div class="scenario-box">
+                <div class="scenario-box-header"><span class="scenario-icon">👤</span>Meet Client B</div>
+                <div class="scenario-box-body">
+                  One of Sales Rep A's managed clients. Client B signed up to TMGM after Sales Rep A personally called them and walked them through the onboarding process. Client B's <code>source_marketing_campaign</code> is tagged <code>Sales-6001_WilliamZhang</code>. Sales Rep A is their dedicated TMGM contact — they handle questions, share market insights, and have built a personal relationship over time.
+                </div>
+              </div>
+
+              <div>
+                <div class="scenario-quote-label"><span>⚠️</span>Now Imagine...</div>
+                <div class="scenario-quote-body">
+                  TMGM's Retail-to-IB campaign sends Client B an email about becoming a TMGM Introducing Broker.
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Tab: PROBLEMS -->
+            <div id="d2-problems" class="decision-tab-content">
+              <div class="problem-item">
+                <div class="problem-num">1</div>
+                <div class="problem-text"><strong>Channel conflict with Sales team.</strong> Sales Rep A is already Client B's dedicated point-of-contact at TMGM. If Client B responds to the IB email and starts engaging with the IB program, they're now dealing with a different TMGM channel — bypassing Sales Rep A entirely. Sales Rep A may feel their managed account is being poached internally, even though both sides of TMGM have legitimate business goals.</div>
+              </div>
+              <div class="problem-item">
+                <div class="problem-num">2</div>
+                <div class="problem-text"><strong>Sales team relationship damage.</strong> If Sales Rep A discovers Marketing is targeting their managed clients for IB opportunities without coordination, it creates internal friction. Trust between Marketing and Sales erodes — Sales may stop sharing client insights, coordinating on handovers, or collaborating on campaigns. In organizations where internal trust breaks down, everyone's performance suffers.</div>
+              </div>
+              <div class="problem-item">
+                <div class="problem-num">3</div>
+                <div class="problem-text"><strong>Potential SO team policy violation.</strong> The Sales Operations (SO) team may have internal policies about cross-promotion to Sales-acquired clients — for example, "Marketing cannot cross-promote to Sales clients for X months after acquisition" or "All campaigns touching Sales accounts must be pre-approved." Sending IB pitches without checking with SO could breach internal governance rules that exist precisely to prevent channel conflict.</div>
+              </div>
+              <div class="problem-item">
+                <div class="problem-num">4</div>
+                <div class="problem-text"><strong>Dual-incentive confusion.</strong> If Client B becomes an IB, their focus may shift from personal trading (where Sales Rep A earns performance credit) to referring others (where Client B earns IB commission). This could reduce the trading volume Sales Rep A was counting on from that account — effectively cannibalizing Sales Rep A's book of business using TMGM's own Marketing resources.</div>
+              </div>
+            </div>
+
+            <!-- Tab: OUR DECISION -->
+            <div id="d2-decision" class="decision-tab-content">
+              <div class="decision-statement">
+                <strong>Exclude all clients where</strong> <code>source_marketing_campaign</code> <strong>starts with</strong> <code>Sales-</code> <strong>— regardless of which Sales rep acquired them.</strong>
+              </div>
+              <p>This is added alongside the Partnership and IB-referred exclusions as part of the 7-condition filter. The filter syntax is <code>source_marketing_campaign NOT STARTSWITH "Sales-"</code>, with NULL values allowed so that pure organic clients still qualify.</p>
+              <p><strong>How this decision surfaced:</strong> During filter design review, Sichen (SFMC) flagged uncertainty about whether <code>Sales-*</code> clients should be included. Rather than verify case-by-case with the SO team or risk breaking an internal policy we didn't know about, we decided to exclude upfront — applying the same logic as the IB-referred exclusion: if the client already has a dedicated relationship manager, Marketing should not cross-promote on top of them.</p>
+              <p><strong>Why "all Sales reps" and not "only certain ones":</strong> The filter cannot distinguish between Sales reps who would and wouldn't care about cross-promotion. Excluding all <code>Sales-</code> prefixed clients is the cleanest, most defensible approach for Phase 1.0. Future phases may introduce more granular Sales team coordination.</p>
+            </div>
+
+            <!-- Tab: PRINCIPLE -->
+            <div id="d2-principle" class="decision-tab-content">
+              <p><strong>The underlying framework: Internal Account Ownership Respect.</strong></p>
+              <p><strong>What it means:</strong> When a TMGM team member — a Sales rep, account manager, or dedicated contact — has directly acquired a client through their own effort (cold outreach, personal relationship building, onboarding support), that client is considered to be under their "account ownership." The team member has invested time, relationship capital, and ongoing service into that client. Respecting this ownership means Marketing should not cross-promote campaigns that might bypass or undermine that team member's relationship with the client.</p>
+              <p><strong>Why it matters in the broker industry:</strong> Brokers typically rely on two distinct client acquisition channels — <strong>sales-led</strong> (internal team) and <strong>marketing-led</strong> (campaigns, ads, organic). These channels have different economics. Sales-acquired clients are often higher-LTV because of the personalised onboarding and ongoing service, which requires sustained investment from the Sales rep. If Marketing freely promotes new programs (like IB opportunities) to these clients, it can break the Sales rep's service monopoly, disrupt their incentive structure (Sales reps are often bonused on their accounts' trading volume), and create internal team friction. In mature broker organisations, Sales and Marketing teams agree on clear rules about who communicates with which client segments — sometimes called a <strong>channel agreement</strong> or <strong>account cadence policy</strong>.</p>
+              <p><strong>How it applies here:</strong> Clients tagged <code>Sales-*</code> in <code>source_marketing_campaign</code> have a direct relationship manager. Sending them a Retail-to-IB campaign without Sales team coordination risks all the issues above. Excluding them upfront is cleaner than trying to negotiate exceptions case-by-case.</p>
+              <p><strong>Connects to Decision 1:</strong> Decision 1 (Channel Conflict Avoidance) protects <strong>external partner</strong> relationships with IBs. Decision 2 protects <strong>internal team</strong> relationships with Sales. Both flow from the same underlying question: <em>"Who else already has a meaningful relationship with this client?"</em></p>
+              <div class="highlight-box">
+                The Retail-to-IB campaign reaches clients who are TMGM's alone to talk to — not those who already "belong" to an internal Sales rep or external IB partner. Respecting ownership at every layer is how we sustain a healthy, high-performing organisation.
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Decisions 3-9 will go here in next build -->
+
+        <!-- DECISION 3 -->
+        <div id="decision-3" class="decision-card">
+          <div class="decision-header" onclick="toggleDecisionCard(this)">
+            <div class="decision-header-left">
+              <div class="decision-icon">👥</div>
+              <div class="decision-meta">
+                <div class="decision-title" onclick="event.stopPropagation()">Decision 3 — Why We Exclude Partnership Clients</div>
+                <div class="decision-summary" onclick="event.stopPropagation()">Protect active partnership funnels · Preserve attribution clarity</div>
+              </div>
+            </div>
+            <div class="decision-toggle"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="transition:transform 0.3s"><polyline points="6 9 12 15 18 9"></polyline></svg></div>
+          </div>
+          <div class="decision-collapsible">
+            <div class="decision-tabs">
+              <button class="decision-tab active" onclick="switchDecisionTab(this,'d3','scenario')">🎬 Scenario</button>
+              <button class="decision-tab" onclick="switchDecisionTab(this,'d3','problems')">🚨 Problems</button>
+              <button class="decision-tab" onclick="switchDecisionTab(this,'d3','decision')">✅ Our Decision</button>
+              <button class="decision-tab" onclick="switchDecisionTab(this,'d3','principle')">🎯 Principle</button>
+            </div>
+
+            <!-- Tab: SCENARIO -->
+            <div id="d3-scenario" class="decision-tab-content active">
+
+              <div class="scenario-box">
+                <div class="scenario-box-header"><span class="scenario-icon">🌐</span>Meet the Partnership Team</div>
+                <div class="scenario-box-body">
+                  TMGM's Partnership team runs dedicated campaign pages for clients who want to join as <strong>IB</strong> (Introducing Broker), <strong>Aff</strong> (Affiliate), <strong>KOL</strong> (Key Opinion Leader), or <strong>Hyb</strong> (Hybrid) partners. Each partnership type has its own landing page, its own onboarding flow, and its own nurture journey. When someone registers through one of these pages, they're flagged with <code>Partnership_IB</code>, <code>Partnership_Aff</code>, <code>Partnership_KOL</code>, or <code>Partnership_Hyb</code> in their <code>source_marketing_campaign</code> field (sometimes with regional prefixes like <code>LA-</code> or <code>SO-</code>).
+                </div>
+              </div>
+
+              <div class="scenario-box">
+                <div class="scenario-box-header"><span class="scenario-icon">👤</span>Meet Client B</div>
+                <div class="scenario-box-body">
+                  Client B registered via TMGM's Partnership IB landing page — they were interested in becoming an IB but haven't recruited anyone yet (so <code>Is_IB = false</code>). Client B's <code>source_marketing_campaign</code> is tagged <code>MKT-Partnership_IB</code>. Behind the scenes, Client B is already in the Partnership team's dedicated nurture journey — getting onboarding content, training materials, and follow-up from the Partnership team.
+                </div>
+              </div>
+
+              <div>
+                <div class="scenario-quote-label"><span>⚠️</span>Now Imagine...</div>
+                <div class="scenario-quote-body">
+                  TMGM's Retail-to-IB campaign <em>also</em> sends Client B an email about the IB Program. Client B is now receiving parallel messages from two different TMGM teams about the same IB opportunity.
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Tab: PROBLEMS -->
+            <div id="d3-problems" class="decision-tab-content">
+              <div class="problem-item">
+                <div class="problem-num">1</div>
+                <div class="problem-text"><strong>Funnel cross-contamination.</strong> Client B is already in the Partnership team's active nurture journey — receiving onboarding content, training, and follow-up designed for partnership-interested prospects. Adding the Retail-to-IB campaign on top means Client B gets two parallel streams of IB content from different teams, often with different tone, different CTAs, and different messaging. This confuses the prospect and dilutes the Partnership team's carefully crafted journey.</div>
+              </div>
+              <div class="problem-item">
+                <div class="problem-num">2</div>
+                <div class="problem-text"><strong>Attribution confusion.</strong> If Client B eventually becomes an IB, who deserves credit — the Partnership team's landing page and nurture journey, or the Retail-to-IB campaign? Both can legitimately claim the conversion. Without clean attribution, teams can't measure what's working, budgets can't be allocated accurately, and performance comparisons become meaningless.</div>
+              </div>
+              <div class="problem-item">
+                <div class="problem-num">3</div>
+                <div class="problem-text"><strong>Internal team friction.</strong> The Partnership team has invested in building the landing pages, nurture sequences, and conversion funnels for partnership-interested prospects. When Marketing sends a parallel campaign into the same audience, the Partnership team may feel their work is being duplicated or undermined — leading to internal disputes over ownership and territory.</div>
+              </div>
+              <div class="problem-item">
+                <div class="problem-num">4</div>
+                <div class="problem-text"><strong>Email fatigue and unsubscribe risk.</strong> A prospect receiving two parallel IB-focused email streams from TMGM is statistically more likely to feel bombarded, mark emails as spam, or unsubscribe entirely. The short-term conversion gain from double-marketing is often offset by the long-term list health damage.</div>
+              </div>
+            </div>
+
+            <!-- Tab: OUR DECISION -->
+            <div id="d3-decision" class="decision-tab-content">
+              <div class="decision-statement">
+                <strong>Exclude all clients where</strong> <code>source_marketing_campaign</code> <strong>contains</strong> <code>"Partnership"</code> <strong>— regardless of type (IB, Aff, KOL, Hyb) or regional prefix (LA-, SO-, Reassign-).</strong>
+              </div>
+              <p>This was the first of the three exclusions we added, originally flagged during filter design as a gap in our initial logic. Our previous filter only checked <code>Is_IB = false</code>, which would miss clients who registered via a Partnership page with <em>intent</em> to become IB but haven't recruited anyone yet. These clients were technically still "retail" by the <code>Is_IB</code> flag, but strategically they were already in a different funnel.</p>
+              <p>The filter condition is <code>source_marketing_campaign NOT CONTAINS "Partnership"</code>. This catches all variants:</p>
+              <p>• <code>MKT-Partnership_IB</code>, <code>MKT-Partnership_Aff</code>, <code>MKT-Partnership_KOL</code>, <code>MKT-Partnership_Hyb</code><br>• <code>LA-MKT-Partnership_*</code>, <code>SO-MKT-Partnership_*</code><br>• <code>Reassign-MKT-Partnership_*</code> (manually reassigned clients)</p>
+              <p>By blocking the entire <code>"Partnership"</code> keyword, we ensure no client currently in any partnership funnel — regardless of type or region — enters the Retail-to-IB campaign.</p>
+            </div>
+
+            <!-- Tab: PRINCIPLE -->
+            <div id="d3-principle" class="decision-tab-content">
+              <p><strong>The underlying framework: Funnel Integrity.</strong></p>
+              <p><strong>What it means:</strong> When a client has entered a specific marketing funnel — whether it's a retail onboarding journey, a partnership nurture sequence, or a Finfluencer recruitment flow — that funnel is an ongoing conversation between the brand and the prospect. Each funnel has its own pacing, tone, CTAs, and conversion goals, carefully designed by the team running it. Dropping a different campaign into the middle of an active funnel disrupts the conversation, muddles the message, and damages both funnels' performance.</p>
+              <p><strong>Why it matters in the broker industry:</strong> Brokers typically operate <strong>multiple parallel acquisition funnels</strong> targeting different prospect segments — retail clients, IB partners, affiliates, KOLs, institutional traders, and so on. Each funnel has distinct messaging and different success metrics. For example, a retail funnel optimises for FTD and trading volume, while a partnership funnel optimises for recruits brought in and their downstream volume. When funnels cross-contaminate, measurement breaks down: you can't tell if your partnership campaigns are working because retail campaigns may be stealing their credit, and vice versa. Mature broker orgs use concepts like <strong>funnel exclusion rules</strong>, <strong>audience suppression lists</strong>, and <strong>campaign isolation</strong> to keep each funnel measurable.</p>
+              <p><strong>How it applies here:</strong> Clients tagged with any <code>Partnership</code> keyword are actively in the Partnership team's funnel. The Retail-to-IB campaign is a separate funnel targeting a different audience (pure retail clients who haven't yet engaged with any partnership offering). Letting these funnels overlap would contaminate both sets of data and confuse prospects getting double-exposed.</p>
+              <p><strong>Connects to Decisions 1 & 2:</strong> Decision 1 protected external partner relationships, Decision 2 protected internal team relationships, and Decision 3 protects <strong>campaign funnel integrity</strong>. All three decisions answer slightly different versions of the same question: <em>"Is this client already in a meaningful relationship or conversation elsewhere?"</em></p>
+              <div class="highlight-box">
+                Clean funnels produce clean data. If we can't tell which campaign is converting which client, we can't optimise anything — and Phase 1.0 of Retail-to-IB depends on getting clean baseline data to inform Phase 2.0.
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Decisions 4-9 will go here in next build -->
+
+        <!-- ============ CATEGORY: AUDIENCE INCLUSIONS ============ -->
+        <div class="decision-category">Audience Inclusions</div>
+
+        <!-- DECISION 4 -->
+        <div id="decision-4" class="decision-card">
+          <div class="decision-header" onclick="toggleDecisionCard(this)">
+            <div class="decision-header-left">
+              <div class="decision-icon">🔄</div>
+              <div class="decision-meta">
+                <div class="decision-title" onclick="event.stopPropagation()">Decision 4 — Why Refer-a-Friend Clients Stay IN</div>
+                <div class="decision-summary" onclick="event.stopPropagation()">Self-selecting IB candidates · No channel conflict to protect</div>
+              </div>
+            </div>
+            <div class="decision-toggle"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="transition:transform 0.3s"><polyline points="6 9 12 15 18 9"></polyline></svg></div>
+          </div>
+          <div class="decision-collapsible">
+            <div class="decision-tabs">
+              <button class="decision-tab active" onclick="switchDecisionTab(this,'d4','scenario')">🎬 Scenario</button>
+              <button class="decision-tab" onclick="switchDecisionTab(this,'d4','reasons')">✨ Why They're Valuable</button>
+              <button class="decision-tab" onclick="switchDecisionTab(this,'d4','decision')">✅ Our Decision</button>
+              <button class="decision-tab" onclick="switchDecisionTab(this,'d4','principle')">🎯 Principle</button>
+            </div>
+
+            <!-- Tab: SCENARIO -->
+            <div id="d4-scenario" class="decision-tab-content active">
+
+              <div class="scenario-box">
+                <div class="scenario-box-header"><span class="scenario-icon">🔄</span>Meet Client A (The RAF Referrer)</div>
+                <div class="scenario-box-body">
+                  Meet Client A. They've been trading with TMGM for 6 months, had a good experience, and decided to share their referral link through TMGM's Refer-a-Friend (RAF) program. They posted the link in a trading chat group and invited 3 friends to sign up. Client A received a small one-time bonus for each friend who signed up and funded — but critically, <strong>Client A does NOT earn any ongoing commission</strong> from their friends' trades. The referral relationship is transactional and one-time.
+                </div>
+              </div>
+
+              <div class="scenario-box">
+                <div class="scenario-box-header"><span class="scenario-icon">👤</span>Meet Client B (The Referred Friend)</div>
+                <div class="scenario-box-body">
+                  One of Client A's 3 referred friends. Client B signed up, funded, and started trading. Client B's <code>source_marketing_campaign</code> is tagged <code>Refer Friend</code>. Client B and Client A may still be friends outside of TMGM, but within TMGM there's <strong>no ongoing commission or business relationship</strong> between them — Client A already received their bonus and doesn't earn from Client B's trades.
+                </div>
+              </div>
+
+              <div>
+                <div class="scenario-quote-label"><span>✨</span>Now Consider...</div>
+                <div class="scenario-quote-body positive">
+                  TMGM's Retail-to-IB campaign sends Client B an email about becoming a TMGM Introducing Broker. Client B might actually be a <strong>perfect candidate</strong> — they've already experienced the benefit of being on the receiving end of a referral, and they know TMGM's platform works.
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Tab: WHY THEY'RE VALUABLE -->
+            <div id="d4-reasons" class="decision-tab-content">
+              <div class="reason-item">
+                <div class="reason-num">1</div>
+                <div class="reason-text"><strong>Self-selecting behavioural fit.</strong> RAF referrers have already demonstrated the core behaviour needed to be a good IB — they're willing to recommend TMGM to their network. That's the single most important predictor of IB success — and we already have proof they've done it. Randomly selected retail clients have unknown propensity to refer; RAF referrers have proven propensity.</div>
+              </div>
+              <div class="reason-item">
+                <div class="reason-num">2</div>
+                <div class="reason-text"><strong>No channel conflict exists.</strong> Unlike IB-referred clients (Decision 1) where the referring IB earns ongoing commission, RAF referrers receive only a one-time bonus. There's no active commission relationship to disrupt, no ongoing revenue stream to cannibalise, no channel conflict to protect. The RAF program is designed as transactional and finite — unlike the IB program which is relationship-based and ongoing.</div>
+              </div>
+              <div class="reason-item">
+                <div class="reason-num">3</div>
+                <div class="reason-text"><strong>They understand TMGM's platform intimately.</strong> RAF referrers have personally onboarded, funded, and traded with TMGM. They can vouch for TMGM credibly to future referrals — their testimony is authentic, not marketing spin. This authenticity typically converts prospects better than external marketing messaging, which is why word-of-mouth channels are among the highest-performing in financial services.</div>
+              </div>
+              <div class="reason-item">
+                <div class="reason-num">4</div>
+                <div class="reason-text"><strong>Network already in place.</strong> RAF referrers have demonstrated they have an active trading network (friends, chat groups, colleagues) willing to consider TMGM. For IB economics, this is half the battle — they don't need to build an audience from scratch. A fresh retail client might theoretically want to be an IB, but without an existing network, conversion to meaningful commission is unlikely.</div>
+              </div>
+            </div>
+
+            <!-- Tab: OUR DECISION -->
+            <div id="d4-decision" class="decision-tab-content">
+              <div class="decision-statement">
+                <strong>Include all clients where</strong> <code>source_marketing_campaign</code> <strong>=</strong> <code>Refer Friend</code> <strong>or</strong> <code>LA-Refer Friend</code> <strong>in the Retail-to-IB campaign audience.</strong>
+              </div>
+              <p>This decision is more than "not excluded" — it's a deliberate call-out that RAF clients are <strong>one of the highest-value segments</strong> in our Phase 1.0 audience. They passed all 7 filter conditions AND have demonstrated the specific behaviour we're asking them to do at a larger scale (refer others to TMGM).</p>
+              <p><strong>Implementation:</strong> The filter condition <code>source_marketing_campaign NOT STARTSWITH "IB-"</code> already allows RAF clients through (since they don't start with <code>IB-</code>). The <code>NOT CONTAINS "Partnership"</code> also allows them. No additional filter logic is needed — our existing 7-condition filter already captures them correctly.</p>
+              <p><strong>Phase 2.0 consideration:</strong> In Phase 2.0, we may add behavioural segmentation that prioritises RAF clients with higher-impact messaging (e.g., "You've already referred friends — here's how to turn that into ongoing income"). For Phase 1.0, they receive the standard 5-email sequence alongside other included audiences.</p>
+            </div>
+
+            <!-- Tab: PRINCIPLE -->
+            <div id="d4-principle" class="decision-tab-content">
+              <p><strong>The underlying framework: Self-Selecting Affinity.</strong></p>
+              <p><strong>What it means:</strong> Clients who have already demonstrated a specific behaviour are statistically far more likely to do that behaviour again — and at scale. Past action is the strongest predictor of future action. Rather than trying to convince a random retail client to become a referrer, it's much more efficient to activate the clients who have already self-selected as referrers through smaller programs (like RAF) and offer them the infrastructure to do it bigger (the IB program).</p>
+              <p><strong>Why it matters in the broker industry:</strong> IB conversion from retail is notoriously difficult because it requires a rare combination of traits: (1) <strong>interest</strong> in earning commission, (2) an existing <strong>network</strong> of potential traders, (3) <strong>willingness to recommend</strong> the broker, and (4) enough <strong>trust in the platform</strong> to stake their reputation on it. Randomly selected retail clients may have one or two of these traits; the conversion rate is typically low. But RAF referrers have effectively <strong>pre-qualified themselves</strong> on all four — they're interested enough to have taken action, they have a network (proven by actual referrals), they're willing to recommend (proven by actual recommendations), and they trust TMGM (proven by personally trading). In financial services marketing, this is sometimes called <strong>behavioural pre-qualification</strong> or <strong>intent signal marketing</strong> — targeting based on what clients have <em>done</em>, not what they say they'd do.</p>
+              <p><strong>How it applies here:</strong> RAF clients have shown the exact behaviour we want them to repeat at a larger scale — sharing TMGM with their network. The IB program is the natural upgrade path from RAF (ongoing commission vs one-time bonus, structured portal vs ad-hoc sharing, sub-IB network vs flat referrals). Including RAF clients in the Retail-to-IB campaign isn't just "not excluding" them — it's <strong>strategically prioritising</strong> them as the most likely converters.</p>
+              <p><strong>Connects back to Decisions 1-3:</strong> The first three decisions answered <em>"who should we exclude because they're already in someone else's relationship?"</em> Decision 4 asks the opposite question: <em>"who should we prioritise because they've already shown the behaviour we want?"</em> Same underlying filter logic, opposite direction — and together they define our audience not just by who's "not in conflict," but by who's most likely to convert.</p>
+              <div class="highlight-box">
+                Instead of recruiting IBs from scratch, we're activating the retail clients who've already shown they'll do the work of recommending TMGM — they just need the structure and incentives to scale it. That's the highest-leverage move available in Phase 1.0.
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ============ CATEGORY: ENTRY LOGIC ============ -->
+        <div class="decision-category">Entry Logic</div>
+
+        <!-- DECISION 5 -->
+        <div id="decision-5" class="decision-card">
+          <div class="decision-header" onclick="toggleDecisionCard(this)">
+            <div class="decision-header-left">
+              <div class="decision-icon">🚦</div>
+              <div class="decision-meta">
+                <div class="decision-title" onclick="event.stopPropagation()">Decision 5 — Why KYC → FTD → 7-Day Buffer Before Journey Entry</div>
+                <div class="decision-summary" onclick="event.stopPropagation()">Earn the right to pitch · Respect the client's readiness stages</div>
+              </div>
+            </div>
+            <div class="decision-toggle"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="transition:transform 0.3s"><polyline points="6 9 12 15 18 9"></polyline></svg></div>
+          </div>
+          <div class="decision-collapsible">
+            <div class="decision-tabs">
+              <button class="decision-tab active" onclick="switchDecisionTab(this,'d5','scenario')">🎬 Scenario</button>
+              <button class="decision-tab" onclick="switchDecisionTab(this,'d5','problems')">🚨 Problems</button>
+              <button class="decision-tab" onclick="switchDecisionTab(this,'d5','decision')">✅ Our Decision</button>
+              <button class="decision-tab" onclick="switchDecisionTab(this,'d5','principle')">🎯 Principle</button>
+            </div>
+
+            <!-- Tab: SCENARIO -->
+            <div id="d5-scenario" class="decision-tab-content active">
+
+              <div class="scenario-box">
+                <div class="scenario-box-header"><span class="scenario-icon">🪪</span>Day -10 — Client B Completes KYC</div>
+                <div class="scenario-box-body">
+                  Client B signs up on TMGM's website, uploads ID, proof of address, and completes identity verification. They're now a <strong>verified retail account holder</strong> — legally and operationally allowed to trade. But verified doesn't mean engaged. Client B hasn't deposited a single dollar yet, hasn't placed a single trade, and has no track record with the platform. Pitching them the IB program at this point is like asking someone to sell a restaurant after they've only walked past the front door.
+                </div>
+              </div>
+
+              <div class="scenario-box">
+                <div class="scenario-box-header"><span class="scenario-icon">💰</span>Day 0 — Client B Makes Their First Time Deposit (FTD)</div>
+                <div class="scenario-box-body">
+                  Client B funds their account with their first deposit (FTD) and places their first trades. This is a meaningful shift — they've <strong>skin in the game</strong>, they're experiencing execution speed, platform UX, spreads, and customer service firsthand. But it's still early. They're exploring, comparing, figuring out if TMGM is right for them. They haven't formed an opinion yet.
+                </div>
+              </div>
+
+              <div class="scenario-box">
+                <div class="scenario-box-header"><span class="scenario-icon">🧘</span>Day 1 to 7 — The Buffer Period</div>
+                <div class="scenario-box-body">
+                  TMGM stays quiet on the IB front. No IB pitch, no promotional emails about earning commission, no "become a partner" messaging. Client B gets space to explore the platform, place trades, see how their strategy performs, interact with support if needed. By the end of Day 7, they've formed an initial opinion about TMGM — positive or negative — and they're ready to hear about <em>more</em> things TMGM offers beyond pure trading. <strong>This is when the IB pitch lands.</strong>
+                </div>
+              </div>
+
+              <div>
+                <div class="scenario-quote-label"><span>✨</span>Now Consider...</div>
+                <div class="scenario-quote-body strategic">
+                  A client who receives the IB pitch on Day 0 (immediately after FTD) has no basis to evaluate whether TMGM is a platform they'd want to recommend to friends — they've barely used it. A client who receives it on Day 7 has formed a first impression, placed trades, experienced the platform, and is positioned to evaluate the opportunity on merit. <strong>The same pitch lands very differently depending on when it arrives.</strong>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Tab: PROBLEMS -->
+            <div id="d5-problems" class="decision-tab-content">
+              <div class="problem-item">
+                <div class="problem-num">1</div>
+                <div class="problem-text"><strong>Clients can't evaluate what they haven't experienced.</strong> The IB program asks clients to refer friends to TMGM — effectively putting their personal reputation behind the platform. A client who's only deposited 2 days ago has no basis to do that. They haven't tested execution, haven't seen how support handles issues, haven't confirmed the platform works for their trading style. Asking them to recommend TMGM to their network when they haven't even evaluated it themselves is premature — and most clients will intuitively sense that.</div>
+              </div>
+              <div class="problem-item">
+                <div class="problem-num">2</div>
+                <div class="problem-text"><strong>Undermines perceived credibility of the pitch.</strong> When marketing pitches arrive too fast after onboarding, it signals to the client that TMGM prioritises extracting value from them over building relationship. Sophisticated retail clients — the ones most likely to become successful IBs — notice this pattern and discount the brand accordingly. <em>"This broker was pitching me IB sign-up before I even knew what my spread was"</em> becomes a lasting first impression that's very hard to undo.</div>
+              </div>
+              <div class="problem-item">
+                <div class="problem-num">3</div>
+                <div class="problem-text"><strong>Contaminates early-experience behavioural data.</strong> Phase 1.0's measurement goal is to understand how clients respond to the Retail-to-IB campaign. If we pitch clients on Day 0, we're mixing two signals: their response to the campaign AND their response to being pitched while still onboarding. The 7-day buffer isolates the campaign's impact on clients who've had a normal onboarding experience — which is what we need to learn in order to optimise Phase 2.0.</div>
+              </div>
+              <div class="problem-item">
+                <div class="problem-num">4</div>
+                <div class="problem-text"><strong>Risks regulatory scrutiny around aggressive marketing.</strong> Broker industry regulators (including ASIC, which we don't target precisely because of similar concerns) scrutinise early-stage client pitching, especially around products that promise earning opportunities. Pitching newly-funded clients on IB commission within 24-48 hours of their first deposit invites concerns around pressure tactics and suitability. A 7-day buffer demonstrates marketing discipline and reduces regulatory exposure.</div>
+              </div>
+            </div>
+
+            <!-- Tab: OUR DECISION -->
+            <div id="d5-decision" class="decision-tab-content">
+              <div class="decision-statement">
+                <strong>Clients must complete KYC verification, make their First Time Deposit (FTD), and then wait 7 days post-FTD before entering the Retail-to-IB journey. This 3-gate sequence — KYC → FTD → 7-day buffer — is enforced as part of the 7 filter conditions.</strong>
+              </div>
+              <p><strong>Filter implementation:</strong> Two of our 7 filter conditions enforce this entry logic: <code>ID_Verified = Verified</code> (KYC gate), and <code>TA_First_Deposit_Time IS NOT NULL AND TA_First_Deposit_Time ≤ (today − 7 days)</code> (FTD + buffer combined). A client who's completed KYC but not yet made FTD doesn't match. A client who made FTD 3 days ago doesn't match yet. A client who made FTD 8 days ago matches — and enters the Retail-to-IB journey on their next filter evaluation cycle.</p>
+              <p><strong>Why each gate matters:</strong> <strong>KYC</strong> is a regulatory gate — we can't legally market to unverified clients. <strong>FTD</strong> is a commitment signal — unfunded accounts are typically low-intent browsers, not serious prospects. <strong>7-day buffer</strong> is an experience gate — gives the client time to form an opinion about TMGM before we ask them to recommend us.</p>
+              <p><strong>What happens during the 7-day buffer:</strong> This window isn't dead air. Other TMGM teams can engage the client during this period — customer service for platform questions, educational content from the retail onboarding journey, product notifications, etc. The restriction is specifically on <strong>IB pitch content</strong> — because that's the category that requires the client to have formed a view on TMGM first. Once the buffer clears, the Retail-to-IB journey begins.</p>
+            </div>
+
+            <!-- Tab: PRINCIPLE -->
+            <div id="d5-principle" class="decision-tab-content">
+              <p><strong>The underlying framework: Progressive Qualification.</strong></p>
+              <p><strong>What it means:</strong> In any multi-step marketing funnel, there are natural <strong>readiness gates</strong> — moments where the prospect has accumulated enough context, experience, or signals that a specific pitch becomes appropriate. Pitching before a gate has cleared wastes the pitch; pitching after it has cleared is more likely to convert. Good marketing design is about identifying the right gates and respecting them — not trying to short-circuit the prospect's journey. Each gate is an investment the prospect makes (completing forms, depositing money, forming opinions) that qualifies them for progressively more meaningful asks.</p>
+              <p><strong>Why it matters in the broker industry:</strong> Financial-services clients have notoriously complex decision cycles. They need to verify that a platform works for them (execution, spreads, UX), build trust with the brand (customer service, transparency, reliability), and develop enough experience to form an opinion before considering any "second-level" offering like IB programs or managed accounts. Brokers that rush prospects through this cycle often see high early-stage conversion but poor long-term retention, because clients who converted prematurely churn out when reality doesn't match the pitch. This is sometimes called <strong>premature pitching penalty</strong> or <strong>readiness-mismatch attrition</strong>. Mature broker programs use what's called <strong>progressive disclosure</strong> — revealing increasingly sophisticated offerings only after clients have demonstrated readiness for each stage.</p>
+              <p><strong>How it applies here:</strong> Our 3-gate sequence is a practical implementation of progressive qualification. <strong>KYC</strong> is a regulatory gate (legally required). <strong>FTD</strong> is a commitment gate (they've put money in, they're serious). <strong>7-day buffer</strong> is an experience gate (they've formed an opinion about the platform). Only after all three have cleared do we believe the IB pitch is credible to the client. Earlier is possible but less effective; later is possible but wastes the opportunity window.</p>
+              <p><strong>Connects to previous decisions:</strong> Decisions 1-3 defined <strong>who we exclude</strong> and why — based on existing relationships that would conflict with the campaign. Decision 4 defined <strong>who we prioritise</strong> — based on behaviour that makes them likely converters. Decision 5 defines <strong>when</strong> that qualified audience becomes ready to hear the pitch. All three dimensions — WHO to exclude, WHO to prioritise, WHEN to pitch — are calibrated together for Phase 1.0 baseline integrity. Together they produce a campaign that respects the client's journey rather than racing to get in front of them.</p>
+              <div class="highlight-box">
+                The same pitch lands very differently at different stages of readiness. Our job is to wait for the right stage — not to pitch first.
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- All decisions built -->
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Sections 5 will go here in next builds -->
+
+  <!-- SECTION 5: AUDIENCE AT A GLANCE -->
+  <div class="section-title">Section 6 — Audience at a Glance</div>
+
+  <div id="audience-glance" class="info-card">
+    <div class="info-header" onclick="toggleInfoCard(this)">
+      <div class="info-header-left">
+        <div class="info-icon">🎯</div>
+        <div class="info-meta">
+          <h2 onclick="event.stopPropagation()">Audience at a Glance</h2>
+          <div class="info-subtitle" onclick="event.stopPropagation()">Quick reference for campaign audience</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <span class="info-badge">Reference</span>
+        <span class="expand-hint">Click to expand</span>
+        <div class="info-toggle"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="transition:transform 0.3s"><polyline points="6 9 12 15 18 9"></polyline></svg></div>
+      </div>
+    </div>
+    <div class="info-collapsible">
+      <div class="info-body">
+
+        <div class="in-out-split">
+          <div class="in-out-panel panel-in">
+            <div class="in-out-panel-label">✅ IN</div>
+            <div class="in-out-panel-items">
+              <ul>
+                <li class="has-tooltip">Organic (no campaign attribution)<span class="info-icon-inline">i</span>
+                  <div class="item-tooltip">Clients who signed up directly to TMGM with no marketing campaign, referrer, or IB behind them. Their <code>source_marketing_campaign</code> field is empty (<code>--</code> or NULL). <strong>Pure retail audience</strong> — no channel conflict, ideal Retail-to-IB targets.</div>
+                </li>
+                <li class="has-tooltip">Refer-a-Friend (retail-to-retail referrals)<span class="info-icon-inline">i</span>
+                  <div class="item-tooltip">Clients referred by another retail client through the RAF program. The referrer received a small bonus but does <strong>NOT</strong> earn ongoing commission. Safe to target — the RAF referrer has no financial stake in their trading volume. <strong>Strong IB candidates</strong> as they've already shown referral behaviour.</div>
+                </li>
+                <li class="has-tooltip">Marketing-acquired (MKT-* campaigns)<span class="info-icon-inline">i</span>
+                  <div class="item-tooltip">Clients who came via TMGM's own marketing campaigns (ads, social media, content, etc.). Tagged with prefixes like <code>MKT-smgcwtmgmcads</code>, <code>MKT-smmttmgcth</code>. They <strong>belong to TMGM directly</strong> — no third-party relationship manager, so no channel conflict.</div>
+                </li>
+                <li class="has-tooltip">Regional channels (e.g. LA)<span class="info-icon-inline">i</span>
+                  <div class="item-tooltip">Clients tagged with regional identifiers like <code>LA</code> (Latin America) without any specific partner or IB attribution. Considered <strong>regional organic</strong> — no managed relationship, safe to target.</div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="in-out-panel panel-out">
+            <div class="in-out-panel-label">❌ OUT</div>
+            <div class="in-out-panel-items">
+              <ul>
+                <li class="has-tooltip">Partnership-origin clients (IB / Aff / KOL / Hyb)<span class="info-icon-inline">i</span>
+                  <div class="item-tooltip">Clients who registered via a Partnership campaign page with intent to become an IB (<code>Partnership_IB</code>), affiliate (<code>Partnership_Aff</code>), KOL (<code>Partnership_KOL</code>), or hybrid partner (<code>Partnership_Hyb</code>). They're <strong>already in active partnership funnels</strong> being nurtured by other TMGM teams — our campaign would create overlap and attribution confusion.</div>
+                </li>
+                <li class="has-tooltip">IB-referred clients (already tied to an existing IB)<span class="info-icon-inline">i</span>
+                  <div class="item-tooltip">Clients whose <code>source_marketing_campaign</code> starts with <code>IB-</code> (e.g. <code>IB-6158164-STD-USD</code>) — they were referred to TMGM by an existing IB who now earns commission from their trades. Pitching them to become IBs themselves creates <strong>channel conflict</strong> with their referring IB and risks damaging our relationship with the IB partner network.</div>
+                </li>
+                <li class="has-tooltip">Sales-acquired clients (already in sales-managed relationships)<span class="info-icon-inline">i</span>
+                  <div class="item-tooltip">Clients acquired directly by TMGM's Sales team (e.g. <code>Sales-6001_WilliamZhang</code>). They have a <strong>dedicated Sales rep</strong> managing the relationship. Marketing to them about IB opportunities would bypass the Sales rep and create internal channel conflict with the Sales team.</div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="highlight-box">
+          For full rationale behind each decision, see Section 5 — Strategic Decisions.
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 7: EMAIL CONTENT -->
+  <div class="section-title">Section 7 — Email Content</div>
+
+  <!-- EMAIL E1: THE IB PROGRAM EXPLAINED -->
+  <div id="email-e1" class="email-card">
+    <div class="email-header" onclick="toggleEmailCard(this)">
+      <div class="email-header-left">
+        <div class="email-num">E1</div>
+        <div class="email-meta">
+          <div class="email-meta-h2" onclick="event.stopPropagation()">Email 1 — The IB Program Explained</div>
+          <div class="email-trigger" onclick="event.stopPropagation()">First email in the journey</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <span class="type-badge">Phase 1.0</span>
+        <span class="expand-hint">Click to expand</span>
+        <div class="email-toggle"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="transition:transform 0.3s"><polyline points="6 9 12 15 18 9"></polyline></svg></div>
+      </div>
+    </div>
+    <div class="email-collapsible">
+      <div class="lang-tabs">
+        <button class="lang-tab active" onclick="switchEmailLang(this,'e1','en')">EN</button>
+        <button class="lang-tab" onclick="switchEmailLang(this,'e1','id')">ID</button>
+        <button class="lang-tab" onclick="switchEmailLang(this,'e1','ko')">KO</button>
+        <button class="lang-tab" onclick="switchEmailLang(this,'e1','vn')">VN</button>
+        <button class="lang-tab" onclick="switchEmailLang(this,'e1','th')">TH</button>
+        <button class="lang-tab" onclick="switchEmailLang(this,'e1','ar')">AR</button>
+      </div>
+      <div id="e1-en" class="lang-content active">
+        <div class="email-body">
+          <div class="email-field"><div class="email-field-row"><span class="email-field-label">Email Subject</span><span class="email-field-value subject">The TMGM IB Program — explained in 60 seconds</span></div></div>
+          <div class="email-field"><div class="email-field-row"><span class="email-field-label">Preview Text</span><span class="email-field-value">A quick look at how the program works</span></div></div>
+          <div class="email-field"><div class="email-field-row"><span class="email-field-label">CTA</span><span class="email-field-value">Learn More About the Program</span></div></div>
+          <div class="email-preview">
+            <div class="banner">The TMGM IB Program — Explained in 60 Seconds</div>
+            <div class="salutation">Dear [Name],</div>
+            <div class="content-block">You're already trading with TMGM. If you've ever wondered how our Introducing Broker (IB) Program works, here's a quick overview.</div>
+            <div class="content-block" style="font-weight:700; font-size:16px; color:var(--dark);">What is the TMGM IB Program?</div>
+            <div class="content-block">It's a program where eligible partners may earn rebates from the trading activity of clients they introduce to TMGM. Whether you have a small circle of trading friends or a wider network, the program is designed to scale with your involvement.</div>
+            <div class="content-block" style="font-weight:700; font-size:16px; color:var(--dark);">How It Works — In 3 Steps</div>
+            <div class="content-block">1. Apply to become a TMGM Introducing Broker (Application is subject to eligibility and program terms.)
+2. Share your unique referral link with your network (Friends, trading communities, or anyone who may be interested in TMGM.)
+3. Earn rebates from the trading activity of your referred clients (Rebates may be paid based on the schedule outlined in your IB agreement, where applicable.)</div>
+            <div class="content-block" style="font-weight:700; font-size:16px; color:var(--dark);">Why Consider the TMGM IB Program?</div>
+            <div class="content-block">You already know the platform. You already understand the trading experience. The IB Program offers a structured way for partners to participate in the value created by their referred clients — subject to program terms.</div>
+            <a class="cta-block" href="https://www.tmgmpartners.com/en/partners-program/introducing-broker" target="_blank" rel="noopener noreferrer">Learn More About the Program →</a>
+            <div class="content-block" style="margin-top:16px; font-size:12px; color:var(--grey-500);">Not sure if the IB role suits you? Ask us about the TMGM Finfluencer program — designed for creators and content-led partners.</div>
+            <div class="disclaimer">Investing in CFDs carries significant risks and is not suitable for all investors. Rebates and program features are subject to eligibility, account type, region, and your IB agreement. Actual results may vary. Refer to your IB agreement for full terms. VFSC 40356</div>
+          </div>
+        </div>
+      </div>
+      <div id="e1-id" class="lang-content"><div class="lang-placeholder"><div class="lang-placeholder-text">🇮🇩 Indonesian translation — pending</div></div></div>
+      <div id="e1-ko" class="lang-content"><div class="lang-placeholder"><div class="lang-placeholder-text">🇰🇷 Korean translation — pending</div></div></div>
+      <div id="e1-vn" class="lang-content"><div class="lang-placeholder"><div class="lang-placeholder-text">🇻🇳 Vietnamese translation — pending</div></div></div>
+      <div id="e1-th" class="lang-content"><div class="lang-placeholder"><div class="lang-placeholder-text">🇹🇭 Thai translation — pending</div></div></div>
+      <div id="e1-ar" class="lang-content"><div class="lang-placeholder"><div class="lang-placeholder-text">🇸🇦 Arabic translation — pending</div></div></div>
+    </div>
+  </div>
+
+  <!-- EMAIL E2: THE MATH BEHIND THE IB PROGRAM -->
+  <div id="email-e2" class="email-card">
+    <div class="email-header" onclick="toggleEmailCard(this)">
+      <div class="email-header-left">
+        <div class="email-num">E2</div>
+        <div class="email-meta">
+          <div class="email-meta-h2" onclick="event.stopPropagation()">Email 2 — The Math Behind the IB Program</div>
+          <div class="email-trigger" onclick="event.stopPropagation()">After 1 rest day</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <span class="type-badge">Phase 1.0</span>
+        <span class="expand-hint">Click to expand</span>
+        <div class="email-toggle"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="transition:transform 0.3s"><polyline points="6 9 12 15 18 9"></polyline></svg></div>
+      </div>
+    </div>
+    <div class="email-collapsible">
+      <div class="lang-tabs">
+        <button class="lang-tab active" onclick="switchEmailLang(this,'e2','en')">EN</button>
+        <button class="lang-tab" onclick="switchEmailLang(this,'e2','id')">ID</button>
+        <button class="lang-tab" onclick="switchEmailLang(this,'e2','ko')">KO</button>
+        <button class="lang-tab" onclick="switchEmailLang(this,'e2','vn')">VN</button>
+        <button class="lang-tab" onclick="switchEmailLang(this,'e2','th')">TH</button>
+        <button class="lang-tab" onclick="switchEmailLang(this,'e2','ar')">AR</button>
+      </div>
+      <div id="e2-en" class="lang-content active">
+        <div class="email-body">
+          <div class="email-field"><div class="email-field-row"><span class="email-field-label">Email Subject</span><span class="email-field-value subject">The math behind the TMGM IB Program</span></div></div>
+          <div class="email-field"><div class="email-field-row"><span class="email-field-label">Preview Text</span><span class="email-field-value">Illustrative examples of how rebates may be calculated</span></div></div>
+          <div class="email-field"><div class="email-field-row"><span class="email-field-label">CTA</span><span class="email-field-value">Learn More & Apply</span></div></div>
+          <div class="email-preview">
+            <div class="banner">The Math Behind the TMGM IB Program</div>
+            <div class="salutation">Dear [Name],</div>
+            <div class="content-block">In our previous email, we introduced the TMGM IB Program. Here's a closer look at how rebates may be calculated — with illustrative examples.</div>
+            <div class="content-block" style="font-weight:700; font-size:16px; color:var(--dark);">How Rebates May Be Calculated</div>
+            <div class="content-block">Rebates in the TMGM IB Program are based on the trading activity of your referred clients. Each rebate calculation depends on:
+
+• The product traded (Forex, Bullion, etc.)
+• The client's account type
+• The trading volume (in lots)
+• Your IB agreement
+
+For illustration purposes, the calculation generally follows this structure:</div>
+            <div class="calc-formula">Number of clients &times; Lots traded &times; Rebate per lot = Monthly rebate</div>
+            <div class="content-block" style="font-weight:700; font-size:16px; color:var(--dark);">Illustrative Examples</div>
+            <div class="content-block">The table below shows illustrative monthly rebate ranges, assuming 5 referred clients trading the volumes shown.</div>
+            <div class="illustrative-note">These figures are illustrative only — actual rebates vary by IB agreement, account type, region, and applicable program terms.</div>
+            <table class="rebate-table">
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Per Lot Range</th>
+                  <th>At 10 lots/month each</th>
+                  <th>At 20 lots/month each</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Forex</td>
+                  <td>$1 – $10 USD</td>
+                  <td>$50 – $500</td>
+                  <td>$100 – $1,000</td>
+                </tr>
+                <tr>
+                  <td>Bullion (Gold)</td>
+                  <td>$1 – $20 USD</td>
+                  <td>$50 – $1,000</td>
+                  <td>$100 – $2,000</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="content-block" style="font-size:12px; color:var(--grey-500); font-style:italic;">Per-lot ranges shown reflect the minimum and maximum rates across applicable account types and volume tiers. Actual rates depend on your IB agreement and the client's account configuration.</div>
+            <div class="content-block" style="font-weight:700; font-size:16px; color:var(--dark);">Other Products Available</div>
+            <div class="content-block">The TMGM IB Program also includes rebates for other products such as Bitcoin (BTCUSD), Altcoins, Oil, Indices, Indices Asia, and Shares — with rates that may differ from the examples above. Refer to your IB agreement for the full product list and applicable rates.</div>
+            <a class="cta-block" href="https://www.tmgmpartners.com/en/partners-program/introducing-broker" target="_blank" rel="noopener noreferrer">Learn More & Apply →</a>
+            <div class="disclaimer">Investing in CFDs carries significant risks and is not suitable for all investors. The figures shown are illustrative examples only. Actual rebates may vary and are subject to your IB agreement, account type, region, volume tier, applicable program terms, and other eligibility criteria. Refer to your IB agreement for full terms and applicable rebate rates. VFSC 40356</div>
+          </div>
+        </div>
+      </div>
+      <div id="e2-id" class="lang-content"><div class="lang-placeholder"><div class="lang-placeholder-text">🇮🇩 Indonesian translation — pending</div></div></div>
+      <div id="e2-ko" class="lang-content"><div class="lang-placeholder"><div class="lang-placeholder-text">🇰🇷 Korean translation — pending</div></div></div>
+      <div id="e2-vn" class="lang-content"><div class="lang-placeholder"><div class="lang-placeholder-text">🇻🇳 Vietnamese translation — pending</div></div></div>
+      <div id="e2-th" class="lang-content"><div class="lang-placeholder"><div class="lang-placeholder-text">🇹🇭 Thai translation — pending</div></div></div>
+      <div id="e2-ar" class="lang-content"><div class="lang-placeholder"><div class="lang-placeholder-text">🇸🇦 Arabic translation — pending</div></div></div>
+    </div>
+  </div>
+
+  <!-- EMAIL E3: COMMON QUESTIONS ANSWERED -->
+  <div id="email-e3" class="email-card">
+    <div class="email-header" onclick="toggleEmailCard(this)">
+      <div class="email-header-left">
+        <div class="email-num">E3</div>
+        <div class="email-meta">
+          <div class="email-meta-h2" onclick="event.stopPropagation()">Email 3 — Common Questions Answered</div>
+          <div class="email-trigger" onclick="event.stopPropagation()">After 1 rest day</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <span class="type-badge">Phase 1.0</span>
+        <span class="expand-hint">Click to expand</span>
+        <div class="email-toggle"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="transition:transform 0.3s"><polyline points="6 9 12 15 18 9"></polyline></svg></div>
+      </div>
+    </div>
+    <div class="email-collapsible">
+      <div class="lang-tabs">
+        <button class="lang-tab active" onclick="switchEmailLang(this,'e3','en')">EN</button>
+        <button class="lang-tab" onclick="switchEmailLang(this,'e3','id')">ID</button>
+        <button class="lang-tab" onclick="switchEmailLang(this,'e3','ko')">KO</button>
+        <button class="lang-tab" onclick="switchEmailLang(this,'e3','vn')">VN</button>
+        <button class="lang-tab" onclick="switchEmailLang(this,'e3','th')">TH</button>
+        <button class="lang-tab" onclick="switchEmailLang(this,'e3','ar')">AR</button>
+      </div>
+      <div id="e3-en" class="lang-content active">
+        <div class="email-body">
+          <div class="email-field"><div class="email-field-row"><span class="email-field-label">Email Subject</span><span class="email-field-value subject">3 common questions about the IB Program — answered</span></div></div>
+          <div class="email-field"><div class="email-field-row"><span class="email-field-label">Preview Text</span><span class="email-field-value">Time, network size, and promotion — what to know</span></div></div>
+          <div class="email-field"><div class="email-field-row"><span class="email-field-label">CTA</span><span class="email-field-value">Learn More & Apply</span></div></div>
+          <div class="email-preview">
+            <div class="banner">3 Common Questions About the IB Program — Answered</div>
+            <div class="salutation">Dear [Name],</div>
+            <div class="content-block">You've seen how the TMGM IB Program works and how rebates may be calculated. Here are 3 common questions partners often have before applying — and what to know about each.</div>
+            <div class="content-block" style="font-weight:700; font-size:15px; color:var(--dark);">❝ Will this take a lot of my time? ❞</div>
+            <div class="content-block">The program is designed to require minimal ongoing effort once your referrals are made. Rebates may be earned from your referred clients' trading activity, subject to your IB agreement and applicable program terms. There is no daily content to create, no client management responsibilities, and no required ongoing engagement once a client is referred.</div>
+            <div class="content-block" style="font-weight:700; font-size:15px; color:var(--dark);">❝ Do I need a large network? ❞</div>
+            <div class="content-block">You don't need a large network. The program is designed to work whether you have a few trading-interested contacts or many. Rebate amounts depend on the trading activity of your referred clients and your IB agreement. The program is designed to scale with your level of involvement.</div>
+            <div class="content-block" style="font-weight:700; font-size:15px; color:var(--dark);">❝ Do I need experience promoting financial products? ❞</div>
+            <div class="content-block">As a TMGM IB, partners may have access to materials and resources to support their activities, such as:
+
+• An IB Portal for tracking referrals and program activity
+• Marketing materials such as banners and templates
+• A unique referral tracking link
+• Account support from TMGM, where applicable
+
+Specific resources and support available depend on your IB agreement and program terms.</div>
+            <div class="content-block">If you're interested, the next step is reviewing the program details on our partner page.</div>
+            <a class="cta-block" href="https://www.tmgmpartners.com/en/partners-program/introducing-broker" target="_blank" rel="noopener noreferrer">Learn More & Apply →</a>
+            <div class="disclaimer">Investing in CFDs carries significant risks and is not suitable for all investors. Program features, support, and rebates are subject to your IB agreement, account type, region, and applicable program terms. Specific resources and support may vary. Refer to your IB agreement for full terms. VFSC 40356</div>
+          </div>
+        </div>
+      </div>
+      <div id="e3-id" class="lang-content"><div class="lang-placeholder"><div class="lang-placeholder-text">🇮🇩 Indonesian translation — pending</div></div></div>
+      <div id="e3-ko" class="lang-content"><div class="lang-placeholder"><div class="lang-placeholder-text">🇰🇷 Korean translation — pending</div></div></div>
+      <div id="e3-vn" class="lang-content"><div class="lang-placeholder"><div class="lang-placeholder-text">🇻🇳 Vietnamese translation — pending</div></div></div>
+      <div id="e3-th" class="lang-content"><div class="lang-placeholder"><div class="lang-placeholder-text">🇹🇭 Thai translation — pending</div></div></div>
+      <div id="e3-ar" class="lang-content"><div class="lang-placeholder"><div class="lang-placeholder-text">🇸🇦 Arabic translation — pending</div></div></div>
+    </div>
+  </div>
+
+  <!-- EMAIL E4: IB PROGRAM AT A GLANCE -->
+  <div id="email-e4" class="email-card">
+    <div class="email-header" onclick="toggleEmailCard(this)">
+      <div class="email-header-left">
+        <div class="email-num" style="background:#e8833a;">E4</div>
+        <div class="email-meta">
+          <div class="email-meta-h2" onclick="event.stopPropagation()">Email 4 — IB Program at a Glance</div>
+          <div class="email-trigger" onclick="event.stopPropagation()">After 1 rest day</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <span class="type-badge">Phase 1.0</span>
+        <span class="expand-hint">Click to expand</span>
+        <div class="email-toggle"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="transition:transform 0.3s"><polyline points="6 9 12 15 18 9"></polyline></svg></div>
+      </div>
+    </div>
+    <div class="email-collapsible">
+      <div class="lang-tabs">
+        <button class="lang-tab active" onclick="switchEmailLang(this,'e4','en')">EN</button>
+        <button class="lang-tab" onclick="switchEmailLang(this,'e4','id')">ID</button>
+        <button class="lang-tab" onclick="switchEmailLang(this,'e4','ko')">KO</button>
+        <button class="lang-tab" onclick="switchEmailLang(this,'e4','vn')">VN</button>
+        <button class="lang-tab" onclick="switchEmailLang(this,'e4','th')">TH</button>
+        <button class="lang-tab" onclick="switchEmailLang(this,'e4','ar')">AR</button>
+      </div>
+      <div id="e4-en" class="lang-content active">
+        <div class="email-body">
+          <div class="email-field"><div class="email-field-row"><span class="email-field-label">Email Subject</span><span class="email-field-value subject">%%First_Name%%, the IB Program at a glance</span></div></div>
+          <div class="email-field"><div class="email-field-row"><span class="email-field-label">Preview Text</span><span class="email-field-value">Everything you need to know — in one quick read</span></div></div>
+          <div class="email-field"><div class="email-field-row"><span class="email-field-label">CTA</span><span class="email-field-value">Learn More & Apply</span></div></div>
+          <div class="email-preview">
+            <div class="banner">The TMGM IB Program — At a Glance</div>
+            <div class="salutation">Dear [Name],</div>
+            <div class="content-block">Over the past week, we've covered the basics of the TMGM IB Program — what it is, how rebates may be calculated, and answers to common questions partners often have.</div>
+            <div class="content-block" style="font-weight:700; font-size:15px; color:var(--dark);">A Quick Summary</div>
+            <div class="content-block">The TMGM IB Program is open to eligible partners who introduce clients to TMGM. Rebates may be earned from the trading activity of your referred clients, subject to your IB agreement and applicable program terms.
+
+Key things we've shared:
+
+• How the program works — referrals, rebates, and the role of an IB
+• Illustrative examples of how rebate calculations may be structured
+• Common questions about time commitment, network size, and tools</div>
+            <div class="content-block" style="font-weight:700; font-size:15px; color:var(--dark);">If You're Considering the Program</div>
+            <div class="content-block">If you've been thinking about whether the IB Program might be a fit for your situation, this may be a useful time to take a closer look. Full program details, eligibility criteria, applicable rebate rates, and program terms are available on our partner program page.
+
+If you'd like to explore the program further, the next step is reviewing the partner program details.</div>
+            <a class="cta-block" href="https://www.tmgmpartners.com/en/partners-program/introducing-broker" target="_blank" rel="noopener noreferrer">Learn More & Apply →</a>
+            <div class="content-block" style="margin-top:16px; font-size:12px; color:var(--grey-500);">If the IB role doesn't feel like the right fit, the TMGM Finfluencer program may be worth exploring — designed for creators and content-led partners.</div>
+            <div class="disclaimer">Investing in CFDs carries significant risks and is not suitable for all investors. The TMGM IB Program is subject to eligibility, your IB agreement, account type, region, and applicable program terms. Refer to the partner program page or your IB agreement for full terms and applicable rebate rates. VFSC 40356</div>
+          </div>
+        </div>
+      </div>
+      <div id="e4-id" class="lang-content"><div class="lang-placeholder"><div class="lang-placeholder-text">🇮🇩 Indonesian translation — pending</div></div></div>
+      <div id="e4-ko" class="lang-content"><div class="lang-placeholder"><div class="lang-placeholder-text">🇰🇷 Korean translation — pending</div></div></div>
+      <div id="e4-vn" class="lang-content"><div class="lang-placeholder"><div class="lang-placeholder-text">🇻🇳 Vietnamese translation — pending</div></div></div>
+      <div id="e4-th" class="lang-content"><div class="lang-placeholder"><div class="lang-placeholder-text">🇹🇭 Thai translation — pending</div></div></div>
+      <div id="e4-ar" class="lang-content"><div class="lang-placeholder"><div class="lang-placeholder-text">🇸🇦 Arabic translation — pending</div></div></div>
+    </div>
+  </div>
+
+  <!-- EMAIL E5: A NOTE BEFORE WE STEP BACK -->
+  <div id="email-e5" class="email-card">
+    <div class="email-header" onclick="toggleEmailCard(this)">
+      <div class="email-header-left">
+        <div class="email-num" style="background:#d32f2f;">E5</div>
+        <div class="email-meta">
+          <div class="email-meta-h2" onclick="event.stopPropagation()">Email 5 — A Note Before We Step Back</div>
+          <div class="email-trigger" onclick="event.stopPropagation()">Back-to-back with Email 4 · Final email in the journey</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <span class="type-badge">Phase 1.0</span>
+        <span class="expand-hint">Click to expand</span>
+        <div class="email-toggle"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="transition:transform 0.3s"><polyline points="6 9 12 15 18 9"></polyline></svg></div>
+      </div>
+    </div>
+    <div class="email-collapsible">
+      <div class="lang-tabs">
+        <button class="lang-tab active" onclick="switchEmailLang(this,'e5','en')">EN</button>
+        <button class="lang-tab" onclick="switchEmailLang(this,'e5','id')">ID</button>
+        <button class="lang-tab" onclick="switchEmailLang(this,'e5','ko')">KO</button>
+        <button class="lang-tab" onclick="switchEmailLang(this,'e5','vn')">VN</button>
+        <button class="lang-tab" onclick="switchEmailLang(this,'e5','th')">TH</button>
+        <button class="lang-tab" onclick="switchEmailLang(this,'e5','ar')">AR</button>
+      </div>
+      <div id="e5-en" class="lang-content active">
+        <div class="email-body">
+          <div class="email-field"><div class="email-field-row"><span class="email-field-label">Email Subject</span><span class="email-field-value subject">%%First_Name%%, just a quick note before we step back</span></div></div>
+          <div class="email-field"><div class="email-field-row"><span class="email-field-label">Preview Text</span><span class="email-field-value">We'll check back in with you next month</span></div></div>
+          <div class="email-field"><div class="email-field-row"><span class="email-field-label">CTA</span><span class="email-field-value">Learn More & Apply</span></div></div>
+          <div class="email-preview">
+            <div class="banner">[Name], A Quick Note Before We Step Back</div>
+            <div class="salutation">Dear [Name],</div>
+            <div class="content-block">Over the past week, we've shared an introduction to the TMGM IB Program — what it is, how rebates may be calculated, and what's available to support partners.</div>
+            <div class="content-block">If the program is something you'd like to explore further, full details, eligibility criteria, and applicable terms are available on our partner program page.</div>
+            <a class="cta-block" href="https://www.tmgmpartners.com/en/partners-program/introducing-broker" target="_blank" rel="noopener noreferrer">Learn More & Apply →</a>
+            <div class="content-block" style="margin-top:20px;">For now, we'll give you some space and check back in with you next month. The partner program page is open whenever you're ready to take a closer look.
+
+Either way, thank you for trading with TMGM.</div>
+            <div class="disclaimer">Investing in CFDs carries significant risks and is not suitable for all investors. The TMGM IB Program is subject to eligibility, your IB agreement, account type, region, and applicable program terms. Refer to the partner program page or your IB agreement for full terms and applicable rebate rates. VFSC 40356</div>
+          </div>
+        </div>
+      </div>
+      <div id="e5-id" class="lang-content"><div class="lang-placeholder"><div class="lang-placeholder-text">🇮🇩 Indonesian translation — pending</div></div></div>
+      <div id="e5-ko" class="lang-content"><div class="lang-placeholder"><div class="lang-placeholder-text">🇰🇷 Korean translation — pending</div></div></div>
+      <div id="e5-vn" class="lang-content"><div class="lang-placeholder"><div class="lang-placeholder-text">🇻🇳 Vietnamese translation — pending</div></div></div>
+      <div id="e5-th" class="lang-content"><div class="lang-placeholder"><div class="lang-placeholder-text">🇹🇭 Thai translation — pending</div></div></div>
+      <div id="e5-ar" class="lang-content"><div class="lang-placeholder"><div class="lang-placeholder-text">🇸🇦 Arabic translation — pending</div></div></div>
+    </div>
+  </div>
+
+</div><!-- end main -->
+
+<script>
+function toggleInfoCard(header) {
+  const card = header.closest('.info-card');
+  const wasExpanded = card.classList.contains('expanded');
+
+  // Accordion behavior: close all other expanded cards first
+  document.querySelectorAll('.info-card.expanded').forEach(c => {
+    if (c !== card) c.classList.remove('expanded');
+  });
+
+  // Toggle the clicked card
+  if (wasExpanded) {
+    card.classList.remove('expanded');
+  } else {
+    card.classList.add('expanded');
+  }
+}
+
+function switchInfoTab(btn, cardId, tab) {
+  const card = btn.closest('.info-card');
+  card.querySelectorAll('.info-tab').forEach(t => t.classList.remove('active'));
+  card.querySelectorAll('.info-tab-content').forEach(c => c.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(cardId + '-' + tab).classList.add('active');
+}
+
+function toggleDecisionCard(header) {
+  const card = header.closest('.decision-card');
+  const parentSection = card.closest('.info-card');
+  const wasExpanded = card.classList.contains('expanded');
+
+  // Accordion behavior within Section 4: close other decision cards in the same parent
+  if (parentSection) {
+    parentSection.querySelectorAll('.decision-card.expanded').forEach(c => {
+      if (c !== card) c.classList.remove('expanded');
+    });
+  }
+
+  // Toggle the clicked decision card
+  if (wasExpanded) {
+    card.classList.remove('expanded');
+  } else {
+    card.classList.add('expanded');
+  }
+}
+
+function switchDecisionTab(btn, decisionId, tab) {
+  const card = btn.closest('.decision-card');
+  card.querySelectorAll('.decision-tab').forEach(t => t.classList.remove('active'));
+  card.querySelectorAll('.decision-tab-content').forEach(c => c.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(decisionId + '-' + tab).classList.add('active');
+}
+
+function toggleEmailCard(header) {
+  const card = header.closest('.email-card');
+  const wasExpanded = card.classList.contains('expanded');
+  // Accordion behavior — close other email cards
+  document.querySelectorAll('.email-card.expanded').forEach(c => {
+    if (c !== card) c.classList.remove('expanded');
+  });
+  if (wasExpanded) {
+    card.classList.remove('expanded');
+  } else {
+    card.classList.add('expanded');
+  }
+}
+
+function switchEmailLang(btn, emailId, lang) {
+  const card = btn.closest('.email-card');
+  card.querySelectorAll('.lang-tab').forEach(t => t.classList.remove('active'));
+  card.querySelectorAll('.lang-content').forEach(c => c.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(emailId + '-' + lang).classList.add('active');
+}
+</script>
+</body>
+</html>
