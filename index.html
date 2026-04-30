@@ -1779,7 +1779,7 @@ body { font-family:var(--font); color:var(--dark); background:var(--bg); line-he
             <span class="status-pill confirmed">Complete</span>
           </div>
           <div class="status-row">
-            <span class="status-label">Filter logic (7 conditions)</span>
+            <span class="status-label">Filter logic (8 conditions)</span>
             <span class="status-pill confirmed">Confirmed with data team</span>
           </div>
           <div class="status-row">
@@ -1997,7 +1997,7 @@ body { font-family:var(--font); color:var(--dark); background:var(--bg); line-he
           <div class="qf-box qf-upstream">
             <div class="qf-tooltip tip-below">SFMC continuously checks every client against the Phase 1.0 filter criteria. The moment a client's data matches all conditions, they automatically enter the journey.</div>
             <div class="qf-box-title">⏳ Continuous Filter Check</div>
-            <div class="qf-box-sub">All 7 filter conditions matched? (real-time)</div>
+            <div class="qf-box-sub">All 8 filter conditions matched? (real-time)</div>
           </div>
 
           <div class="qf-upstream-divider"></div>
@@ -2259,7 +2259,7 @@ body { font-family:var(--font); color:var(--dark); background:var(--bg); line-he
           </div>
 
           <div class="fc-filter-box">
-            <div class="fc-filter-title">🔍 Continuous Filter Check — 7 Conditions Matched</div>
+            <div class="fc-filter-title">🔍 Continuous Filter Check — 8 Conditions Matched</div>
             <div class="fc-filter-list">
               <div class="fc-filter-item"><span class="fc-check">✓</span><code>ID_Verified = Verified</code></div>
               <div class="fc-filter-item"><span class="fc-check">✓</span><code>Is_IB = false</code></div>
@@ -2268,8 +2268,9 @@ body { font-family:var(--font); color:var(--dark); background:var(--bg); line-he
               <div class="fc-filter-item"><span class="fc-check">✓</span><code>TA_First_Deposit_Time IS NOT NULL</code></div>
               <div class="fc-filter-item"><span class="fc-check">✓</span><code>TA_First_Deposit_Time ≤ (today − 7 days)</code></div>
               <div class="fc-filter-item" style="grid-column:1 / -1;"><span class="fc-check">✓</span><code>source_marketing_campaign NOT CONTAINS "Partnership" AND NOT STARTSWITH "IB-" AND NOT STARTSWITH "Sales-"</code></div>
+              <div class="fc-filter-item" style="grid-column:1 / -1;"><span class="fc-check">✓</span><code>portal - total_referrals >= 3</code> &nbsp;<span style="color:var(--grey-500); font-size:11px; font-style:italic;">— NEW: Per Tom (CEO) directive · Client must have ≥3 sign-up referrals via RAF · Confirmed with Nick &amp; Sichen</span></div>
             </div>
-            <div class="fc-filter-outcome">↓ &nbsp; All 7 matched → Client enters Retail-to-IB journey</div>
+            <div class="fc-filter-outcome">↓ &nbsp; All 8 matched → Client enters Retail-to-IB journey</div>
           </div>
         </div>
 
@@ -2374,7 +2375,7 @@ body { font-family:var(--font); color:var(--dark); background:var(--bg); line-he
                 </div>
                 <div class="fc-branch-arrow"></div>
                 <div class="fc-branch-node has-tooltip" style="background:var(--grey-50); border-color:var(--grey-300); color:var(--grey-700); font-weight:600;">
-                  Re-check Filter (7 conditions)
+                  Re-check Filter (8 conditions)
                   <span class="info-icon-inline">i</span>
                   <div class="item-tooltip">After 30 days, the filter runs again. If anything changed during the cool-down (became IB, unsubscribed, closed account, etc.), the client's status is re-evaluated before decisions.</div>
                 </div>
@@ -2393,7 +2394,7 @@ body { font-family:var(--font); color:var(--dark); background:var(--bg); line-he
                     <div class="fc-branch-node permanent-exit has-tooltip">
                       Permanent Exit
                       <span class="info-icon-inline">i</span>
-                      <div class="item-tooltip">Client has failed one or more of the 7 filter conditions (e.g. unsubscribed, closed account, became IB via another channel, moved regions). Removed from the journey — cannot re-enter until all 7 conditions are re-satisfied.</div>
+                      <div class="item-tooltip">Client has failed one or more of the 8 filter conditions (e.g. unsubscribed, closed account, became IB via another channel, moved regions). Removed from the journey — cannot re-enter until all 8 conditions are re-satisfied.</div>
                     </div>
                   </div>
                 </div>
@@ -2539,7 +2540,7 @@ body { font-family:var(--font); color:var(--dark); background:var(--bg); line-he
               <div class="decision-statement">
                 <strong>Exclude all clients where</strong> <code>source_marketing_campaign</code> <strong>starts with</strong> <code>IB-</code> <strong>— regardless of region or specific IB.</strong>
               </div>
-              <p>This is added as one of the 7 filter conditions enforced in the Retail-to-IB journey. A client acquired through any existing IB referral will never enter this campaign, protecting the relationship their referring IB has with them.</p>
+              <p>This is added as one of the 8 filter conditions enforced in the Retail-to-IB journey. A client acquired through any existing IB referral will never enter this campaign, protecting the relationship their referring IB has with them.</p>
               <p>Specifically, the filter condition checks: <code>source_marketing_campaign NOT STARTSWITH "IB-"</code> (with NULL values allowed, so pure organic clients still qualify).</p>
               <p><strong>Note on Refer-a-Friend:</strong> This exclusion applies only to <code>IB-</code> prefixed clients — <strong>not</strong> to <code>Refer Friend</code> clients. RAF clients are retail-to-retail referrals where the referrer gets a one-time bonus but does NOT earn ongoing commission — so there's no ongoing partnership relationship to protect.</p>
             </div>
@@ -2820,7 +2821,7 @@ body { font-family:var(--font); color:var(--dark); background:var(--bg); line-he
               <div class="decision-statement">
                 <strong>Include all clients where</strong> <code>source_marketing_campaign</code> <strong>=</strong> <code>Refer Friend</code> <strong>or</strong> <code>LA-Refer Friend</code> <strong>in the Retail-to-IB campaign audience.</strong>
               </div>
-              <p>This decision is more than "not excluded" — it's a deliberate call-out that RAF clients are <strong>one of the highest-value segments</strong> in our Phase 1.0 audience. They passed all 7 filter conditions AND have demonstrated the specific behaviour we're asking them to do at a larger scale (refer others to TMGM).</p>
+              <p>This decision is more than "not excluded" — it's a deliberate call-out that RAF clients are <strong>one of the highest-value segments</strong> in our Phase 1.0 audience. They passed all 8 filter conditions AND have demonstrated the specific behaviour we're asking them to do at a larger scale (refer others to TMGM).</p>
               <p><strong>Implementation:</strong> The filter condition <code>source_marketing_campaign NOT STARTSWITH "IB-"</code> already allows RAF clients through (since they don't start with <code>IB-</code>). The <code>NOT CONTAINS "Partnership"</code> also allows them. No additional filter logic is needed — our existing 7-condition filter already captures them correctly.</p>
               <p><strong>Phase 2.0 consideration:</strong> In Phase 2.0, we may add behavioural segmentation that prioritises RAF clients with higher-impact messaging (e.g., "You've already referred friends — here's how to turn that into ongoing income"). For Phase 1.0, they receive the standard 5-email sequence alongside other included audiences.</p>
             </div>
@@ -2919,9 +2920,9 @@ body { font-family:var(--font); color:var(--dark); background:var(--bg); line-he
             <!-- Tab: OUR DECISION -->
             <div id="d5-decision" class="decision-tab-content">
               <div class="decision-statement">
-                <strong>Clients must complete KYC verification, make their First Time Deposit (FTD), and then wait 7 days post-FTD before entering the Retail-to-IB journey. This 3-gate sequence — KYC → FTD → 7-day buffer — is enforced as part of the 7 filter conditions.</strong>
+                <strong>Clients must complete KYC verification, make their First Time Deposit (FTD), and then wait 7 days post-FTD before entering the Retail-to-IB journey. This 3-gate sequence — KYC → FTD → 7-day buffer — is enforced as part of the 8 filter conditions.</strong>
               </div>
-              <p><strong>Filter implementation:</strong> Two of our 7 filter conditions enforce this entry logic: <code>ID_Verified = Verified</code> (KYC gate), and <code>TA_First_Deposit_Time IS NOT NULL AND TA_First_Deposit_Time ≤ (today − 7 days)</code> (FTD + buffer combined). A client who's completed KYC but not yet made FTD doesn't match. A client who made FTD 3 days ago doesn't match yet. A client who made FTD 8 days ago matches — and enters the Retail-to-IB journey on their next filter evaluation cycle.</p>
+              <p><strong>Filter implementation:</strong> Two of our 8 filter conditions enforce this entry logic: <code>ID_Verified = Verified</code> (KYC gate), and <code>TA_First_Deposit_Time IS NOT NULL AND TA_First_Deposit_Time ≤ (today − 7 days)</code> (FTD + buffer combined). A client who's completed KYC but not yet made FTD doesn't match. A client who made FTD 3 days ago doesn't match yet. A client who made FTD 8 days ago matches — and enters the Retail-to-IB journey on their next filter evaluation cycle.</p>
               <p><strong>Why each gate matters:</strong> <strong>KYC</strong> is a regulatory gate — we can't legally market to unverified clients. <strong>FTD</strong> is a commitment signal — unfunded accounts are typically low-intent browsers, not serious prospects. <strong>7-day buffer</strong> is an experience gate — gives the client time to form an opinion about TMGM before we ask them to recommend us.</p>
               <p><strong>What happens during the 7-day buffer:</strong> This window isn't dead air. Other TMGM teams can engage the client during this period — customer service for platform questions, educational content from the retail onboarding journey, product notifications, etc. The restriction is specifically on <strong>IB pitch content</strong> — because that's the category that requires the client to have formed a view on TMGM first. Once the buffer clears, the Retail-to-IB journey begins.</p>
             </div>
